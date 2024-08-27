@@ -3,29 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página do Psicólogo</title>
+    <title>Sandiê - Comunidade de Psicólogos</title>
     <link rel="stylesheet" href="global-style.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <header>
-        <h1>Bem-vindo à Sandiê</h1>
+        <div class="container">
+            <div class="logo">
+                <i style="font-size: 30px;margin-right: 10px" class="fas fa-brain"></i>
+                <span>Sandiê</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="image-container">
-        <div class="overlay">
-            <h2 class="overlay-title">Encontre o Melhor para Você</h2>
-            <p class="overlay-text">Especialistas qualificados para ajudar você a alcançar seu bem-estar mental.</p>
-        </div>
-        <img src="images/psychologist.jpg" alt="Imagem do Psicólogo">
-    </div>
+    <main>
+        <!-- Carrossel de Imagens -->
+        <section class="hero">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="images/psychologist.jpg" alt="Imagem 1">
+                        <div class="overlay">
+                            <h1 class="overlay-title">Encontre o Melhor para Você</h1>
+                            <p class="overlay-text">Especialistas qualificados para ajudar você a alcançar seu bem-estar mental.</p>
+                            <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/psicologia-2.jpg" alt="Imagem 2">
+                        <div class="overlay">
+                            <h1 class="overlay-title">Bem-Estar Começa Aqui</h1>
+                            <p class="overlay-text">Uma equipe dedicada ao seu crescimento pessoal e mental.</p>
+                            <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/psicologia3.webp" alt="Imagem 3">
+                        <div class="overlay">
+                            <h1 class="overlay-title">Fácil Agendamento</h1>
+                            <p class="overlay-text">Agende sua consulta online de forma rápida e prática.</p>
+                            <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="button-container">
-        <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
-        <a href="sobre.html" class="button">Sobre</a>
-        <a href="servicos.html" class="button">Serviços</a>
-        <a href="contato.html" class="button">Contato</a>
-    </div>
-    <script src="script.ts"></script>
+                <!-- Navegação do Swiper -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+        <!-- Seção de Detalhes -->
+        <section class="details">
+            <div class="container">
+                <div class="detail-card">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Equipe Qualificada</h3>
+                    <p>Contamos com psicólogos experientes e comprometidos com o seu bem-estar mental.</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Agendamento Fácil</h3>
+                    <p>Agende consultas online de maneira rápida e conveniente, diretamente do seu dispositivo.</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Atendimento Personalizado</h3>
+                    <p>Nossos profissionais oferecem atendimento personalizado para atender às suas necessidades.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sandiê. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
