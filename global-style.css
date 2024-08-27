@@ -1,3 +1,4 @@
+/* Estilização básica do corpo */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,6 +7,7 @@ body {
   background-color: #f5f5f5;
 }
 
+/* Estilização do cabeçalho */
 header {
   background-color: #7528b4;
   color: white;
@@ -14,8 +16,10 @@ header {
 
 header h1 {
   margin: 0;
+  font-size: 24px; /* Ajuste o tamanho da fonte do cabeçalho */
 }
 
+/* Container da imagem */
 .image-container {
   position: relative;
   width: 100%;
@@ -23,10 +27,12 @@ header h1 {
 
 .image-container img {
   width: 100%;
-  height: 80vh;
+  height: 80vh; /* Ajuste para se adaptar a diferentes tamanhos de tela */
+  object-fit: cover; /* Mantém a proporção da imagem */
   display: block;
 }
 
+/* Sobreposição da imagem */
 .overlay {
   position: absolute;
   top: 0;
@@ -54,6 +60,7 @@ header h1 {
   margin-top: 10px;
 }
 
+/* Container dos botões */
 .button-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Duas colunas */
@@ -62,6 +69,7 @@ header h1 {
   max-width: 350px; 
 }
 
+/* Estilização dos botões */
 .button {
   background-color: #7528b4;
   color: white;
@@ -79,4 +87,40 @@ header h1 {
 
 .button:hover {
   background-color: #8d29df;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 20px; /* Ajuste para tamanhos menores */
+  }
+
+  .image-container img {
+    height: 60vh; /* Ajuste a altura da imagem para dispositivos menores */
+  }
+
+  .overlay-title {
+    font-size: 20px; /* Ajuste o tamanho da fonte do título */
+  }
+
+  .overlay-text {
+    font-size: 14px; /* Ajuste o tamanho da fonte do texto */
+  }
+
+  .button-container {
+    grid-template-columns: 1fr; /* Uma coluna para dispositivos menores */
+    max-width: 100%;
+    margin: 10px auto;
+  }
+
+  .button {
+    height: 120px; /* Ajuste a altura dos botões para dispositivos menores */
+    font-size: 14px; /* Ajuste o tamanho da fonte dos botões */
+  }
+}
+
+@media (min-width: 1200px) {
+  .button-container {
+    max-width: 500px; /* Aumente a largura máxima para telas grandes */
+  }
 }
