@@ -20,8 +20,13 @@ body {
 
 /* Estilização do cabeçalho */
 header {
-    background-color: #4a148c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 15px 0;
+    background-color: transparent !important; /* Garante que o cabeçalho seja transparente */
+    z-index: 10;
 }
 
 header .container {
@@ -67,30 +72,11 @@ nav ul li a:hover {
     color: #c6a9f2;
 }
 
-/* Estilização da seção hero */
+/* Ajuste para o carrossel e imagens */
 .hero {
-    position: relative;
     width: 100%;
-    height: 80vh;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
-
-.button {
-  background-color: #4a148c;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button:hover {
-  background-color: #6a1b9a;
-  transform: scale(1.05);
+    height: 100vh; /* Ocupa a altura total da tela */
+    position: relative;
 }
 
 .swiper-container {
@@ -99,53 +85,76 @@ nav ul li a:hover {
 }
 
 .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
-.swiper-slide img {
+.slide-content {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
+.slide-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta a imagem sem distorcer */
+    object-position: center; /* Centraliza a imagem */
+}
+
+/* Estilização da Sobreposição */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     padding: 20px;
-    box-sizing: border-box;
-    z-index: 2;
+    text-align: center;
+    box-sizing: border-box; /* Garante que o padding seja considerado dentro do width e height */
+}
+
+.overlay-content {
+    max-width: 80%; /* Limita a largura do conteúdo dentro da overlay */
 }
 
 .overlay-title {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 10px;
 }
 
 .overlay-text {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4a148c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #6d1db8;
+}
+
 
 /* Estilização do Swiper */
 .swiper-pagination-bullet {
     background-color: #fff !important;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    color: #fff;
-}
 
 /* Seção de Detalhes */
 .details {
@@ -203,7 +212,7 @@ footer p {
     }
 
     .hero {
-        height: 60vh;
+        height: 60vh; /* Altura ajustada para telas menores */
     }
 
     .overlay-title {
