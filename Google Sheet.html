@@ -2,17 +2,36 @@
 <html>
 <head>
 	<link rel="stylesheet" href="Google Sheet.css">
+    <link rel="stylesheet" href="global-style.css">
 </head>
+<header>
+  <h1>Bem-vindo à Sandiê</h1>
+</header>
 <body>
 	<div class="container">
 		<form method="post" action="https://script.google.com/macros/s/AKfycbxhD6da0dvx3rQgGChA5NsfQ7hLE7wGTYIfTSfMEoa-esFP9K2vpPUinj6v_xhkXB2sTg/exec" name="contact-form">
-			<h4>Marque seu atendimento</h4>
+			<h3>Marque seu atendimento</h3>
 			<input type="text" name="Nome" placeholder="Nome">
-			<input type="text" name="Psicólogo" placeholder="Psicólogo">
+			
+			<!-- Dropdown para seleção de psicólogo -->
+			<select name="Psicólogo">
+				<option value="" disabled selected>Selecione o Psicólogo</option>
+				<option value="Patrícia Silva">Patrícia Silva</option>
+				<option value="Manoela Silva">Manoela Silva</option>
+				<option value="Fabiano Albuquerque">Fabiano Albuquerque</option>
+				<option value="Bento Albuquerque">Bento Albuquerque</option>
+			</select>
+			
 			<input type="date" name="Data" placeholder="Data">
 			<textarea name="Observações" rows="7" placeholder="Observações"></textarea>
 			<input type="submit" value="Submit" id="submit">
 		</form>
+	</div>
+
+	<!-- Indicador de Loading -->
+	<div id="loading" class="loading-container" style="display: none;">
+		<div class="spinner"></div>
+		<p>Enviando...</p>
 	</div>
 
 	<script src="Google Sheet.js"></script>

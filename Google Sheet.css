@@ -1,45 +1,124 @@
-*{
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-family: 'poppins', sans-serif;
-	font-size: 18px;
+/* Estilização básica do corpo */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #f5f5f5;
 }
-body{
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+
+/* Estilização do cabeçalho */
+header {
+  background-color: #7528b4;
+  color: white;
+  padding: 20px 0; 
 }
-.container{
-	width: 500px;
-	padding: 30px;
-	border: 1px solid #eeeeee;
-	border-radius: 10px;
-	background-color: #003b5b;
+
+header h1 {
+  margin: 0;
 }
-h4{
-	margin-bottom: 10px;
-	font-size: 24px;
-	color: white;
+
+/* Container do formulário */
+.container {
+  margin: 50px auto;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-input{
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
+
+h3 {
+  color: #7528b4;
 }
-textarea{
-	width: 100%;
-	padding: 10px;
+
+/* Estilização dos inputs */
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
-#submit{
-	border: none;
-	background-color: orangered;
-	color: white;
-	width: 200px;
-	margin-top: 10px;
-	border-radius: 5px;
+
+/* Foco nos inputs */
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #7528b4;
+  outline: none;
 }
-#submit:hover{
-	background-color: #333333;
+
+/* Estilização do textarea */
+textarea {
+  resize: vertical;
+}
+
+/* Estilização do botão de submissão */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #7528b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #8d29df;
+}
+
+/* Dropdown de Psicólogos */
+select {
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Estilo de seta personalizada para dropdown (opcional) */
+select::-ms-expand {
+  display: none;
+}
+
+/* Estilo do indicador de loading */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  font-size: 20px;
+}
+
+/* Spinner */
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #7528b4;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
