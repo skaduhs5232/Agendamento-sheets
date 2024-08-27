@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="Google Sheet.css">
-    <link rel="stylesheet" href="global-style.css">
+	<link rel="stylesheet" href="../css/Google Sheet.css">
 </head>
 <header>
   <h1>Bem-vindo à Sandiê</h1>
@@ -11,9 +10,7 @@
 	<div class="container">
 		<form method="post" action="https://script.google.com/macros/s/AKfycbxhD6da0dvx3rQgGChA5NsfQ7hLE7wGTYIfTSfMEoa-esFP9K2vpPUinj6v_xhkXB2sTg/exec" name="contact-form">
 			<h3>Marque seu atendimento</h3>
-			<input type="text" name="Nome" placeholder="Nome">
-			
-			<!-- Dropdown para seleção de psicólogo -->
+			<input type="text" name="Nome" placeholder="Seu nome">
 			<select name="Psicólogo">
 				<option value="" disabled selected>Selecione o Psicólogo</option>
 				<option value="Patrícia Silva">Patrícia Silva</option>
@@ -24,11 +21,10 @@
 			
 			<input type="date" name="Data" placeholder="Data">
 			<textarea name="Observações" rows="7" placeholder="Observações"></textarea>
-			<input type="submit" value="Submit" id="submit">
+			<input type="submit" value="Enviar" id="submit">
 		</form>
 	</div>
 
-	<!-- Indicador de Loading -->
 	<div id="loading" class="loading-container" style="display: none;">
 		<div class="spinner"></div>
 		<p>Enviando...</p>

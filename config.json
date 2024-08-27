@@ -1,0 +1,8 @@
+{
+    "globalStylesheet": "css/global-style.css",
+    "htmlFiles": [
+      "agendamento/Google Sheet.html",
+      "index.html"
+    ]
+  }
+  
