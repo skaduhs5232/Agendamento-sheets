@@ -95,7 +95,7 @@ h3 {
 
 /* Estilização dos inputs */
 input[type="text"],
-input[type="date"],
+input[type="datetime-local"],
 textarea,
 select {
   width: 100%;
