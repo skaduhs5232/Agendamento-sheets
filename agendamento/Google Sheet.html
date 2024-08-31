@@ -28,24 +28,26 @@
     </div>
 </header>
 
-    <section class="content">
-        <div class="container">
-            <form method="post" action="https://script.google.com/macros/s/AKfycbxhD6da0dvx3rQgGChA5NsfQ7hLE7wGTYIfTSfMEoa-esFP9K2vpPUinj6v_xhkXB2sTg/exec" name="contact-form">
-                <h3>Marque seu atendimento</h3>
-                <input type="text" name="Nome" placeholder="Seu nome">
-                <select name="Psicólogo">
-                    <option value="" disabled selected>Selecione o Psicólogo</option>
-                    <option value="Patrícia Silva">Patrícia Silva</option>
-                    <option value="Manoela Silva">Manoela Silva</option>
-                    <option value="Fabiano Albuquerque">Fabiano Albuquerque</option>
-                    <option value="Bento Albuquerque">Bento Albuquerque</option>
-                </select>
-                <input type="datetime-local" name="Data" placeholder="Data">
-                <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
-                <input type="submit" value="Enviar" id="submit">
-            </form>
-        </div>
-    </section>
+<section class="content">
+    <div class="container">
+        <form method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
+            <h3>Marque seu atendimento</h3>
+            <input type="text" name="Nome" placeholder="Seu nome" required>
+            <select name="Psicólogo" required>
+                <option value="" disabled selected>Selecione o Psicólogo</option>
+                <option value="Patrícia Silva">Patrícia Silva</option>
+                <option value="Manoela Silva">Manoela Silva</option>
+                <option value="Fabiano Albuquerque">Fabiano Albuquerque</option>
+                <option value="Bento Albuquerque">Bento Albuquerque</option>
+            </select>            
+            <input type="date" name="Data" placeholder="Data" required>
+            <input type="time" name="Hora" placeholder="Hora" required>
+            <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
+            <input type="submit" value="Enviar" id="submit">
+        </form>
+    </div>
+</section>
+
 
     <div id="loading" class="loading-container" style="display: none;">
         <div class="spinner"></div>
