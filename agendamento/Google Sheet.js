@@ -12,30 +12,6 @@ function capitalizeFirstLetter(str) {
     .join(" ");
 }
 
-// Função para verificar duplicidade de agendamento na API
-async function verificarDuplicidade(nome, psicologo, data, hora) {
-  try {
-    const response = await fetch(scriptURL);
-    if (!response.ok) {
-      throw new Error(`Erro HTTP! status: ${response.status}`);
-    }
-    const dataAgendamentos = await response.json();
-
-    // Verifica se o agendamento já existe na planilha
-    return dataAgendamentos.some(
-      (agendamento) =>
-        capitalizeFirstLetter(agendamento.Nome.trim()) === nome &&
-        capitalizeFirstLetter(agendamento.Psicólogo.trim()) === psicologo &&
-        agendamento.Data.trim() === data &&
-        agendamento.Hora.trim() === hora
-    );
-  } catch (error) {
-    console.error("Erro ao verificar duplicidade:", error);
-    alert("Erro ao verificar duplicidade: " + error.message);
-    return false;
-  }
-}
-
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -55,18 +31,6 @@ form.addEventListener("submit", async (e) => {
 
   nome = capitalizeFirstLetter(nome);
   psicologo = capitalizeFirstLetter(psicologo);
-
-  const agendamentoExistente = await verificarDuplicidade(
-    nome,
-    psicologo,
-    dataInput,
-    hora
-  );
-
-  if (agendamentoExistente) {
-    alert("Este agendamento já foi feito. Por favor, selecione outro horário.");
-    return;
-  }
 
   loading.style.display = "flex";
 
