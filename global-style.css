@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
@@ -184,6 +188,65 @@ nav ul li a:hover {
     font-size: 16px;
     color: #555;
     margin-bottom: 10px;
+}
+
+/* Estilo para o botão de menu (hambúrguer) */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+/* Estilo padrão para o menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para o menu escondido em telas menores */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Exibe o botão de menu */
+    }
+
+    nav ul {
+        display: none; /* Esconde o menu */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Ajuste conforme a altura do header */
+        right: 0;
+        left: 0; /* Para o menu ocupar a largura completa */
+        background-color: #4a148c;
+        padding: 10px 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 100; /* Para garantir que o menu fique acima do conteúdo */
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    nav ul.active {
+        display: flex; /* Exibe o menu quando ativo */
+    }
+}
+
+/* Garantir que o conteúdo não fique coberto pelo menu */
+.content {
+    margin-top: 150px; /* Ajuste conforme a altura do header */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilização do rodapé */

@@ -1,38 +1,96 @@
-/* Estilização básica do corpo */
-body {
-  font-family: Arial, sans-serif;
+/* Reset básico e configuração da fonte */
+* {
   margin: 0;
   padding: 0;
-  text-align: center;
-  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* Estilização do cabeçalho */
 header {
-  background-color: #7528b4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #4a148c;
   color: white;
-  padding: 20px 0; 
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-header h1 {
-  margin: 0;
-  font-size: 24px; /* Ajuste o tamanho da fonte do cabeçalho */
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Container do formulário */
-.container {
-  margin: 20px auto; /* Ajuste a margem para dispositivos móveis */
-  width: 90%;
-  max-width: 500px; /* Aumente a largura máxima para telas maiores */
+header .logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+header .logo i {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+header nav ul li {
+  margin-left: 30px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: #c6a9f2;
+}
+
+/* Estilização da seção de conteúdo */
+.content {
+  margin-top: 120px; /* Espaçamento para o header fixo */
   padding: 20px;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
-  color: #7528b4;
-  font-size: 20px; /* Ajuste o tamanho da fonte do subtítulo */
+  color: #4a148c;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Estilização dos inputs */
@@ -41,43 +99,45 @@ input[type="date"],
 textarea,
 select {
   width: 100%;
-  padding: 10px;
+  padding: 12px 15px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
-  box-sizing: border-box;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Foco nos inputs */
 input[type="text"]:focus,
 input[type="date"]:focus,
 textarea:focus,
 select:focus {
-  border-color: #7528b4;
+  border-color: #4a148c;
+  box-shadow: 0 0 5px rgba(74, 20, 140, 0.5);
   outline: none;
 }
 
-/* Estilização do textarea */
 textarea {
   resize: vertical;
+  min-height: 150px;
 }
 
 /* Estilização do botão de submissão */
 input[type="submit"] {
   width: 100%;
-  padding: 10px;
-  background-color: #7528b4;
+  padding: 12px 20px;
+  background-color: #4a148c;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 input[type="submit"]:hover {
-  background-color: #8d29df;
+  background-color: #6d1db8;
+  transform: translateY(-2px);
 }
 
 /* Dropdown de Psicólogos */
@@ -87,12 +147,7 @@ select {
   cursor: pointer;
 }
 
-/* Estilo de seta personalizada para dropdown (opcional) */
-select::-ms-expand {
-  display: none;
-}
-
-/* Estilo do indicador de loading */
+/* Estilo de loading */
 .loading-container {
   position: fixed;
   top: 0;
@@ -109,7 +164,6 @@ select::-ms-expand {
   font-size: 20px;
 }
 
-/* Spinner */
 .spinner {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #7528b4;
@@ -120,6 +174,66 @@ select::-ms-expand {
   margin-bottom: 20px;
 }
 
+/* Estilo para o botão de menu (hambúrguer) */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+}
+
+/* Estilo padrão para o menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para o menu escondido em telas menores */
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: block; /* Exibe o botão de menu */
+  }
+
+  nav ul {
+      display: none; /* Esconde o menu */
+      flex-direction: column;
+      position: absolute;
+      top: 60px; /* Ajuste conforme a altura do header */
+      right: 0;
+      left: 0; /* Para o menu ocupar a largura completa */
+      background-color: #4a148c;
+      padding: 10px 0;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: 100; /* Para garantir que o menu fique acima do conteúdo */
+  }
+
+  nav ul li {
+      margin: 10px 0;
+      text-align: center;
+  }
+
+  nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+  }
+
+  nav ul.active {
+      display: flex; /* Exibe o menu quando ativo */
+  }
+}
+
+/* Para garantir que o conteúdo não fique coberto pelo menu */
+.content {
+  margin-top: 150px; /* Ajuste conforme a altura do header */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -127,30 +241,32 @@ select::-ms-expand {
 
 /* Estilos Responsivos */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 20px; /* Ajuste para tamanhos menores */
+  header .container {
+      flex-direction: column;
+      text-align: center;
   }
 
-  .container {
-    margin: 10px auto; /* Ajuste a margem para dispositivos menores */
-    padding: 15px; /* Ajuste o padding para dispositivos menores */
+  header nav ul {
+      flex-direction: column;
+      margin-top: 10px;
+  }
+
+  header nav ul li {
+      margin-left: 0;
+      margin-bottom: 10px;
   }
 
   h3 {
-    font-size: 18px; /* Ajuste o tamanho da fonte do subtítulo */
+      font-size: 20px;
   }
 
-  input[type="text"],
-  input[type="date"],
-  textarea,
-  select,
-  input[type="submit"] {
-    font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos menores */
+  .content {
+      padding: 15px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 600px; /* Aumente a largura máxima para telas grandes */
+      max-width: 700px;
   }
 }

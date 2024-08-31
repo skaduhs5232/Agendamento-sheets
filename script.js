@@ -13,3 +13,8 @@ var swiper = new Swiper('.swiper-container', {
       disableOnInteraction: false,
   },
 });
+
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+});
