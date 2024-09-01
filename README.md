@@ -8,6 +8,12 @@ As informações das consultas marcadas são registradas na seguinte planilha do
 
 [![Google Sheets](https://img.shields.io/badge/Google%20Sheets-A3C853?style=for-the-badge&logo=Google-Sheets&logoColor=white)](https://docs.google.com/spreadsheets/d/12Cs8-M70MKT3faHm4DEzibHGWvuaXtTGNJHtOVVHVLE/edit?gid=0#gid=0)
 
+## **Planilha de Colaboradores**
+
+As informações dos Colaboradores são registradas na seguinte planilha do Google Sheets:
+
+[![Google Sheets](https://img.shields.io/badge/Google%20Sheets-A3C853?style=for-the-badge&logo=Google-Sheets&logoColor=white)](https://docs.google.com/spreadsheets/d/1ZJCIXykfFWz0Agb5L8y9TtqzlWwQUFqNraQyNZaQUz8/edit?gid=0#gid=0)
+
 ## **Adicionar CSS Global às Páginas HTML**
 
 Para garantir que todas as páginas HTML da aplicação utilizem o mesmo estilo, utilize o seguinte comando para aplicar o CSS global às páginas:
