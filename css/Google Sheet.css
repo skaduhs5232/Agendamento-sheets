@@ -93,6 +93,35 @@ h3 {
   text-align: center;
 }
 
+/* Container para mensagens de feedback */
+#feedback-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Mensagens de sucesso */
+.feedback-message.success {
+  color: #4CAF50; /* Cor verde para sucesso */
+}
+
+/* Mensagens de erro */
+.feedback-message.error {
+  color: #F44336; /* Cor vermelha para erro */
+}
+
+/* Mensagens de aviso */
+.feedback-message.warning {
+  color: #FFC107; /* Cor amarela para aviso */
+}
+
+
 /* Estilização dos inputs */
 input[type="text"],
 input[type="date"],

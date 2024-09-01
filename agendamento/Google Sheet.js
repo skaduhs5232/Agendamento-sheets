@@ -1,4 +1,5 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -11,6 +12,24 @@ function capitalizeFirstLetter(str) {
     .join(" ");
 }
 
+// Função para mostrar mensagens de feedback
+function showFeedback(message, type) {
+  const container = document.getElementById("feedback-container");
+  const messageElement = document.getElementById("feedback-message");
+
+  // Define a classe com base no tipo de mensagem
+  messageElement.className = "feedback-message " + type;
+  messageElement.textContent = message;
+
+  // Exibe o container
+  container.style.display = "block";
+
+  // Oculta o container após 5 segundos
+  setTimeout(() => {
+    container.style.display = "none";
+  }, 5000);
+}
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -20,7 +39,7 @@ form.addEventListener("submit", async (e) => {
   dataAtual.setHours(0, 0, 0, 0);
 
   if (dataSelecionada < dataAtual) {
-    alert("Por favor, selecione uma data futura.");
+    showFeedback("Por favor, selecione uma data futura.", "warning");
     return;
   }
 
@@ -44,17 +63,29 @@ form.addEventListener("submit", async (e) => {
     .then((response) => response.json())
     .then((result) => {
       if (result.result === "success") {
-        alert("Obrigado, seu cadastro foi adicionado, fique de olho na data!");
-      } else if (result.result === "error" && result.message === "agendamento duplicado") {
-        alert("Este agendamento já foi feito. Por favor, selecione outro horário.");
+        showFeedback(
+          "Obrigado, seu cadastro foi adicionado, fique de olho na data!",
+          "success"
+        );
+      } else if (
+        result.result === "error" &&
+        result.message === "agendamento duplicado"
+      ) {
+        showFeedback(
+          "Este agendamento já foi feito. Por favor, selecione outro horário.",
+          "warning"
+        );
       } else {
-        alert("Erro: " + result.message);
+        showFeedback("Erro: " + result.message, "error");
       }
       form.reset();
     })
     .catch((error) => {
       console.error("Error!", error.message);
-      alert("Houve um erro ao enviar os dados. Tente novamente mais tarde.");
+      showFeedback(
+        "Houve um erro ao enviar os dados. Tente novamente mais tarde.",
+        "error"
+      );
     })
     .finally(() => {
       loading.style.display = "none";
