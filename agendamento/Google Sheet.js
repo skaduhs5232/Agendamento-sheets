@@ -1,5 +1,4 @@
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -46,6 +45,8 @@ form.addEventListener("submit", async (e) => {
     .then((result) => {
       if (result.result === "success") {
         alert("Obrigado, seu cadastro foi adicionado, fique de olho na data!");
+      } else if (result.result === "error" && result.message === "agendamento duplicado") {
+        alert("Este agendamento já foi feito. Por favor, selecione outro horário.");
       } else {
         alert("Erro: " + result.message);
       }
