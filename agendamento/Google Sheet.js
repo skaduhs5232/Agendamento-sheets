@@ -92,27 +92,36 @@ form.addEventListener("submit", async (e) => {
     });
 });
 
-// Carregar psicólogos da planilha específica usando JSONP
 document.addEventListener("DOMContentLoaded", function () {
-  const url = "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec?callback=populateSelect";
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navMenu = document.querySelector("nav ul");
 
-  const select = document.querySelector('select[name="Psicólogo"]');
+  menuToggle.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+  });
 
-  // Função de callback para o JSONP
-  window.populateSelect = function(data) {
-    data.forEach((option) => {
-      const opt = document.createElement("option");
-      opt.value = option[0];
-      opt.textContent = option[0];
-      select.appendChild(opt);
-    });
-  };
+  const dataInput = form.querySelector('input[name="Data"]');
+  const dataAtual = new Date().toISOString().split("T")[0];
+  dataInput.setAttribute("min", dataAtual);
 
-  // Carrega o script JSONP
-  const script = document.createElement('script');
-  script.src = url;
-  document.body.appendChild(script);
+  // Carregar os psicólogos da planilha
+  fetch("https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec")
+    .then(response => response.json())
+    .then(data => {
+      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+      data.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        selectPsicologo.appendChild(option);
+      });
+    })
+    .catch(error => console.error("Erro ao carregar os dados:", error));
+});
 
+
+// Inicializa outras funcionalidades da página após o DOM carregar
+document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.querySelector("nav ul");
 
