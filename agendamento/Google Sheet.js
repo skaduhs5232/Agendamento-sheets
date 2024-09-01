@@ -16,14 +16,10 @@ function showFeedback(message, type) {
   const container = document.getElementById("feedback-container");
   const messageElement = document.getElementById("feedback-message");
 
-  // Define a classe com base no tipo de mensagem
   messageElement.className = "feedback-message " + type;
   messageElement.textContent = message;
 
-  // Exibe o container
   container.style.display = "block";
-
-  // Oculta o container após 5 segundos
   setTimeout(() => {
     container.style.display = "none";
   }, 5000);
@@ -63,18 +59,9 @@ form.addEventListener("submit", async (e) => {
     .then((response) => response.json())
     .then((result) => {
       if (result.result === "success") {
-        showFeedback(
-          "Obrigado, seu cadastro foi adicionado, fique de olho na data!",
-          "success"
-        );
-      } else if (
-        result.result === "error" &&
-        result.message === "agendamento duplicado"
-      ) {
-        showFeedback(
-          "Este agendamento já foi feito. Por favor, selecione outro horário.",
-          "warning"
-        );
+        showFeedback("Obrigado, seu cadastro foi adicionado, fique de olho na data!", "success");
+      } else if (result.result === "error" && result.message === "agendamento duplicado") {
+        showFeedback("Este agendamento já foi feito. Por favor, selecione outro horário.", "warning");
       } else {
         showFeedback("Erro: " + result.message, "error");
       }
@@ -82,16 +69,14 @@ form.addEventListener("submit", async (e) => {
     })
     .catch((error) => {
       console.error("Error!", error.message);
-      showFeedback(
-        "Houve um erro ao enviar os dados. Tente novamente mais tarde.",
-        "error"
-      );
+      showFeedback("Houve um erro ao enviar os dados. Tente novamente mais tarde.", "error");
     })
     .finally(() => {
       loading.style.display = "none";
     });
 });
 
+// Inicializa outras funcionalidades da página após o DOM carregar
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.querySelector("nav ul");
@@ -117,19 +102,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
-});
-
-
-// Inicializa outras funcionalidades da página após o DOM carregar
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navMenu = document.querySelector("nav ul");
-
-  menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("active");
-  });
-
-  const dataInput = form.querySelector('input[name="Data"]');
-  const dataAtual = new Date().toISOString().split("T")[0];
-  dataInput.setAttribute("min", dataAtual);
 });
