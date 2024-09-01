@@ -30,6 +30,7 @@ function showFeedback(message, type) {
   }, 5000);
 }
 
+// Enviar formulário
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -92,7 +93,28 @@ form.addEventListener("submit", async (e) => {
     });
 });
 
+// Carregar psicólogos de duas planilhas diferentes
 document.addEventListener("DOMContentLoaded", function () {
+  const urls = [
+    "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec", // URL do Apps Script da primeira planilha
+    "https://script.google.com/macros/s/AKfycbzXg8jR_fhP8pshNrQwA9kPcOa5JLp_BlmL8PjlGNdLKTOHrRZ/exec", // URL do Apps Script da segunda planilha
+  ];
+
+  const select = document.querySelector('select[name="Psicólogo"]');
+
+  Promise.all(urls.map((url) => fetch(url).then((response) => response.json())))
+    .then((dataArrays) => {
+      dataArrays.flat().forEach((option) => {
+        const opt = document.createElement("option");
+        opt.value = option[0];
+        opt.textContent = option[0];
+        select.appendChild(opt);
+      });
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar dados do Google Sheets:", error);
+    });
+
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.querySelector("nav ul");
 
