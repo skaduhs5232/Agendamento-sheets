@@ -1,4 +1,4 @@
-const scriptURL ="https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -94,12 +94,17 @@ form.addEventListener("submit", async (e) => {
 
 // Carregar psicólogos da planilha específica
 document.addEventListener("DOMContentLoaded", function () {
-  const url ="https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec"; // URL do Apps Script da planilha "Colaboradores"
+  const url = "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec"; // URL do Apps Script da planilha "Colaboradores"
 
   const select = document.querySelector('select[name="Psicólogo"]');
 
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .then((data) => {
       data.forEach((option) => {
         const opt = document.createElement("option");
