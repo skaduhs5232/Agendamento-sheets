@@ -19,7 +19,7 @@ body {
 /* Container */
 .container {
   width: 90%;
-  max-width: 600px;
+  max-width: 800px; /* Aumentado para telas maiores */
   margin: 0 auto;
   padding: 20px;
 }
@@ -30,11 +30,11 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
+  padding: 15px 0;
   background-color: #4a148c;
   color: white;
   z-index: 10;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 header .container {
@@ -47,12 +47,12 @@ header .logo {
   display: flex;
   align-items: center;
   color: white;
-  font-size: 24px;
+  font-size: 28px; /* Aumentado para destacar mais */
   font-weight: 700;
 }
 
 header .logo i {
-  font-size: 30px;
+  font-size: 35px; /* Aumentado para melhor visibilidade */
   margin-right: 10px;
 }
 
@@ -63,32 +63,33 @@ header nav ul {
 }
 
 header nav ul li {
-  margin-left: 30px;
+  margin-left: 20px; /* Diminuído para maior proximidade */
 }
 
 header nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 header nav ul li a:hover {
   color: #c6a9f2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilização da seção de conteúdo */
 .content {
-  margin-top: 120px; /* Espaçamento para o header fixo */
+  margin-top: 80px; /* Ajustado para espaçamento mais elegante */
   padding: 20px;
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Levemente arredondado para um visual mais suave */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais suave e profunda */
 }
 
 h3 {
   color: #4a148c;
-  font-size: 24px;
+  font-size: 26px; /* Ajustado para maior destaque */
   margin-bottom: 20px;
   text-align: center;
 }
@@ -99,11 +100,12 @@ h3 {
   top: 20px;
   right: 20px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  max-width: 300px; /* Limita a largura para manter a consistência */
 }
 
 /* Mensagens de sucesso */
@@ -129,10 +131,10 @@ input[type="time"],
 textarea,
 select {
   width: 100%;
-  padding: 12px 15px;
+  padding: 14px 16px; /* Ajustado para maior conforto ao digitar */
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px; /* Levemente arredondado para um visual mais suave */
   font-size: 16px;
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -143,7 +145,7 @@ input[type="date"]:focus,
 textarea:focus,
 select:focus {
   border-color: #4a148c;
-  box-shadow: 0 0 5px rgba(74, 20, 140, 0.5);
+  box-shadow: 0 0 6px rgba(74, 20, 140, 0.5);
   outline: none;
 }
 
@@ -155,11 +157,11 @@ textarea {
 /* Estilização do botão de submissão */
 input[type="submit"] {
   width: 100%;
-  padding: 12px 20px;
+  padding: 14px 22px; /* Ajustado para maior conforto ao clicar */
   background-color: #4a148c;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px; /* Levemente arredondado para um visual mais suave */
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -184,7 +186,7 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6); /* Escurecido para melhor contraste */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,8 +200,8 @@ select {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #7528b4;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px; /* Aumentado para maior visibilidade */
+  height: 60px; /* Aumentado para maior visibilidade */
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
 }
@@ -256,11 +258,11 @@ nav ul {
 
 /* Para garantir que o conteúdo não fique coberto pelo menu */
 .content {
-  margin-top: 150px; /* Ajuste conforme a altura do header */
+  margin-top: 120px; /* Ajuste conforme a altura do header */
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -287,7 +289,7 @@ nav ul {
   }
 
   h3 {
-      font-size: 20px;
+      font-size: 22px; /* Ajustado para melhor leitura em dispositivos móveis */
   }
 
   .content {
@@ -297,6 +299,6 @@ nav ul {
 
 @media (min-width: 1200px) {
   .container {
-      max-width: 700px;
+      max-width: 900px; /* Ampliado para telas maiores */
   }
 }
