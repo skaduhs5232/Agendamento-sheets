@@ -96,7 +96,7 @@ form.addEventListener("submit", async (e) => {
 // Carregar psicólogos da planilha específica
 document.addEventListener("DOMContentLoaded", function () {
   const url =
-    "https://script.google.com/macros/s/AKfycbytTMgt97lHqH0kpT7ADC3f7VORd0eGOJRLVtzBft4/dev"; // URL do Apps Script da planilha "Colaboradores"
+    "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec"; // URL do Apps Script da planilha "Colaboradores"
 
   const select = document.querySelector('select[name="Psicólogo"]');
 
