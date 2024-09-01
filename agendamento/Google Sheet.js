@@ -92,30 +92,26 @@ form.addEventListener("submit", async (e) => {
     });
 });
 
-// Carregar psicólogos da planilha específica
+// Carregar psicólogos da planilha específica usando JSONP
 document.addEventListener("DOMContentLoaded", function () {
-  const url = "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec"; // URL do Apps Script da planilha "Colaboradores"
+  const url = "https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec?callback=populateSelect";
 
   const select = document.querySelector('select[name="Psicólogo"]');
 
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      data.forEach((option) => {
-        const opt = document.createElement("option");
-        opt.value = option[0];
-        opt.textContent = option[0];
-        select.appendChild(opt);
-      });
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar dados do Google Sheets:", error);
+  // Função de callback para o JSONP
+  window.populateSelect = function(data) {
+    data.forEach((option) => {
+      const opt = document.createElement("option");
+      opt.value = option[0];
+      opt.textContent = option[0];
+      select.appendChild(opt);
     });
+  };
+
+  // Carrega o script JSONP
+  const script = document.createElement('script');
+  script.src = url;
+  document.body.appendChild(script);
 
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.querySelector("nav ul");
