@@ -95,18 +95,27 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
     .then(response => response.json())
     .then(data => {
-      // Mapear os dados para um objeto { nome: url }
+      console.log(data); // Exibe os dados para depuração
+
       const psicologoUrls = {};
 
       data.forEach(row => {
-        // Supondo que a linha é uma string no formato "Nome,URL"
-        const [nome, url] = row.split(","); // Dividindo a string em nome e url
-        psicologoUrls[nome.trim()] = url.trim();
+        // Verifica se a linha possui dois valores (nome e URL)
+        if (row.length >= 2) {
+          const nome = row[0].trim();
+          const url = row[1].trim();
 
-        const option = document.createElement("option");
-        option.value = nome.trim();
-        option.textContent = nome.trim();
-        selectPsicologo.appendChild(option);
+          // Armazena a URL associada ao nome do colaborador
+          psicologoUrls[nome] = url;
+
+          // Cria uma opção para o dropdown
+          const option = document.createElement("option");
+          option.value = nome;
+          option.textContent = nome;
+          selectPsicologo.appendChild(option);
+        } else {
+          console.error("Formato de linha inesperado:", row);
+        }
       });
 
       // Adiciona o evento de mudança para o dropdown
@@ -122,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
               // Manipular os dados da nova planilha
               console.log("Dados da nova planilha:", planilhaData);
 
-              // Exemplo de como você pode usar os dados na nova planilha
               // Aqui você pode adicionar lógica para exibir esses dados no HTML, por exemplo.
             })
             .catch(error => console.error("Erro ao carregar os dados da planilha:", error));
