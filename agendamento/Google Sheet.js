@@ -91,16 +91,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Carregar os psicólogos da planilha
   fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
-    .then(response => response.json())
-    .then(data => {
-      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-      data.forEach(optionText => {
-        const option = document.createElement("option");
-        option.value = optionText;
-        option.textContent = optionText;
-        selectPsicologo.appendChild(option);
-      });
-    })
-    .catch(error => console.error("Erro ao carregar os dados:", error));
-    
+  .then(response => response.json())
+  .then(data => {
+    const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+    data.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item['Colaboradores'];  // Presume que o nome da coluna é 'Colaboradores'
+      option.textContent = item['Colaboradores'];
+      selectPsicologo.appendChild(option);
+
+      // Logando a URL da segunda coluna no console
+      console.log(item['Planilhas']); // Presume que o nome da coluna é 'Planilhas'
+    });
+  })
+  .catch(error => console.error("Erro ao carregar os dados:", error));
+
 });
