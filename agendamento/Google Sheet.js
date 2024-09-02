@@ -93,18 +93,13 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
     .then(response => response.json())
     .then(data => {
-        const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-        data.forEach(row => {
-            // Adiciona o valor da primeira coluna no select
-            const option = document.createElement("option");
-            option.value = row[0];  // Primeira coluna
-            option.textContent = row[0];
-            selectPsicologo.appendChild(option);
-
-            // Imprime o valor da segunda coluna no console
-            console.log(row[1]);  // Segunda coluna
-        });
+      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+      data.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        selectPsicologo.appendChild(option);
+      });
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
-
 });
