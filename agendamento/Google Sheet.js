@@ -89,42 +89,45 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataAtual = new Date().toISOString().split("T")[0];
   dataInput.setAttribute("min", dataAtual);
 
+  const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+
   // Carregar os psicólogos da planilha
   fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
-  .then(response => response.json())
-  .then(data => {
-    const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-    
-    // Mapear os dados para um objeto { nome: url }
-    const psicologoUrls = {};
-    
-    data.forEach(row => {
-      const [nome, url] = row; // Supondo que cada linha seja um array [nome, url]
-      psicologoUrls[nome] = url;
-      
-      const option = document.createElement("option");
-      option.value = nome;
-      option.textContent = nome;
-      selectPsicologo.appendChild(option);
-    });
-    
-    // Adiciona o evento de mudança para o dropdown
-    selectPsicologo.addEventListener('change', (event) => {
-      const selectedPsicologo = event.target.value;
-      const selectedUrl = psicologoUrls[selectedPsicologo];
-      
-      if (selectedUrl) {
-        // Faz o fetch da nova planilha usando a URL correspondente
-        fetch(selectedUrl)
-          .then(response => response.json())
-          .then(planilhaData => {
-            // Aqui você pode manipular os dados da nova planilha
-            console.log("Dados da nova planilha:", planilhaData);
-          })
-          .catch(error => console.error("Erro ao carregar os dados da planilha:", error));
-      }
-    });
-  })
-  .catch(error => console.error("Erro ao carregar os dados:", error));
+    .then(response => response.json())
+    .then(data => {
+      // Mapear os dados para um objeto { nome: url }
+      const psicologoUrls = {};
 
+      data.forEach(row => {
+        // Supondo que a linha é uma string no formato "Nome,URL"
+        const [nome, url] = row.split(","); // Dividindo a string em nome e url
+        psicologoUrls[nome.trim()] = url.trim();
+
+        const option = document.createElement("option");
+        option.value = nome.trim();
+        option.textContent = nome.trim();
+        selectPsicologo.appendChild(option);
+      });
+
+      // Adiciona o evento de mudança para o dropdown
+      selectPsicologo.addEventListener("change", (event) => {
+        const selectedPsicologo = event.target.value;
+        const selectedUrl = psicologoUrls[selectedPsicologo];
+
+        if (selectedUrl) {
+          // Faz o fetch da nova planilha usando a URL correspondente
+          fetch(selectedUrl)
+            .then(response => response.json())
+            .then(planilhaData => {
+              // Manipular os dados da nova planilha
+              console.log("Dados da nova planilha:", planilhaData);
+
+              // Exemplo de como você pode usar os dados na nova planilha
+              // Aqui você pode adicionar lógica para exibir esses dados no HTML, por exemplo.
+            })
+            .catch(error => console.error("Erro ao carregar os dados da planilha:", error));
+        }
+      });
+    })
+    .catch(error => console.error("Erro ao carregar os dados:", error));
 });
