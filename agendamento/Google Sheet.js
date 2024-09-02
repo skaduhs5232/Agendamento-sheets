@@ -89,57 +89,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataAtual = new Date().toISOString().split("T")[0];
   dataInput.setAttribute("min", dataAtual);
 
-  const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-
   // Carregar os psicólogos da planilha
   fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
     .then(response => response.json())
     .then(data => {
-      console.log(data); // Exibe os dados para depuração
-
-      const psicologoUrls = {};
-
-      data.forEach(row => {
-        // Verifica se a linha possui dois valores (nome e URL)
-        if (row.length >= 2) {
-          const nome = row[0] ? row[0].trim() : '';  // Verifica se o nome existe
-          const url = row[1] ? row[1].trim() : '';    // Verifica se a URL existe
-
-          // Verifica se ambos nome e url são válidos
-          if (nome && url) {
-            // Armazena a URL associada ao nome do colaborador
-            psicologoUrls[nome] = url;
-
-            // Cria uma opção para o dropdown
-            const option = document.createElement("option");
-            option.value = nome;
-            option.textContent = nome;
-            selectPsicologo.appendChild(option);
-          } else {
-            console.error("Nome ou URL ausente:", row);
-          }
-        } else {
-          console.error("Formato de linha inesperado:", row);
-        }
-      });
-
-      // Adiciona o evento de mudança para o dropdown
-      selectPsicologo.addEventListener("change", (event) => {
-        const selectedPsicologo = event.target.value;
-        const selectedUrl = psicologoUrls[selectedPsicologo];
-
-        if (selectedUrl) {
-          // Faz o fetch da nova planilha usando a URL correspondente
-          fetch(selectedUrl)
-            .then(response => response.json())
-            .then(planilhaData => {
-              // Manipular os dados da nova planilha
-              console.log("Dados da nova planilha:", planilhaData);
-
-              // Aqui você pode adicionar lógica para exibir esses dados no HTML, por exemplo.
-            })
-            .catch(error => console.error("Erro ao carregar os dados da planilha:", error));
-        }
+      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+      data.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        selectPsicologo.appendChild(option);
       });
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
