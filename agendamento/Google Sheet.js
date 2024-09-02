@@ -102,4 +102,5 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
+    
 });
