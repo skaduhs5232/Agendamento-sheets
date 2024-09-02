@@ -1,4 +1,5 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -59,9 +60,18 @@ form.addEventListener("submit", async (e) => {
     .then((response) => response.json())
     .then((result) => {
       if (result.result === "success") {
-        showFeedback("Obrigado, seu cadastro foi adicionado, fique de olho na data!", "success");
-      } else if (result.result === "error" && result.message === "agendamento duplicado") {
-        showFeedback("Este agendamento já foi feito. Por favor, selecione outro horário.", "warning");
+        showFeedback(
+          "Obrigado, seu cadastro foi adicionado, fique de olho na data!",
+          "success"
+        );
+      } else if (
+        result.result === "error" &&
+        result.message === "agendamento duplicado"
+      ) {
+        showFeedback(
+          "Este agendamento já foi feito. Por favor, selecione outro horário.",
+          "warning"
+        );
       } else {
         showFeedback("Erro: " + result.message, "error");
       }
@@ -69,7 +79,10 @@ form.addEventListener("submit", async (e) => {
     })
     .catch((error) => {
       console.error("Error!", error.message);
-      showFeedback("Houve um erro ao enviar os dados. Tente novamente mais tarde.", "error");
+      showFeedback(
+        "Houve um erro ao enviar os dados. Tente novamente mais tarde.",
+        "error"
+      );
     })
     .finally(() => {
       loading.style.display = "none";
@@ -90,16 +103,46 @@ document.addEventListener("DOMContentLoaded", function () {
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
-  fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
-    .then(response => response.json())
-    .then(data => {
-      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-      data.forEach(optionText => {
+  fetch(
+    "https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const selectPsicologo = document.querySelector(
+        'select[name="Psicólogo"]'
+      );
+
+      // Mapear os dados para um objeto { nome: url }
+      const psicologoUrls = {};
+
+      data.forEach((row) => {
+        const [nome, url] = row; // Supondo que cada linha seja um array [nome, url]
+        psicologoUrls[nome] = url;
+
         const option = document.createElement("option");
-        option.value = optionText;
-        option.textContent = optionText;
+        option.value = nome;
+        option.textContent = nome;
         selectPsicologo.appendChild(option);
       });
+
+      // Adiciona o evento de mudança para o dropdown
+      selectPsicologo.addEventListener("change", (event) => {
+        const selectedPsicologo = event.target.value;
+        const selectedUrl = psicologoUrls[selectedPsicologo];
+
+        if (selectedUrl) {
+          // Faz o fetch da nova planilha usando a URL correspondente
+          fetch(selectedUrl)
+            .then((response) => response.json())
+            .then((planilhaData) => {
+              // Aqui você pode manipular os dados da nova planilha
+              console.log("Dados da nova planilha:", planilhaData);
+            })
+            .catch((error) =>
+              console.error("Erro ao carregar os dados da planilha:", error)
+            );
+        }
+      });
     })
-    .catch(error => console.error("Erro ao carregar os dados:", error));
+    .catch((error) => console.error("Erro ao carregar os dados:", error));
 });
