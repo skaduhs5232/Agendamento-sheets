@@ -102,17 +102,22 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach(row => {
         // Verifica se a linha possui dois valores (nome e URL)
         if (row.length >= 2) {
-          const nome = row[0].trim();
-          const url = row[1].trim();
+          const nome = row[0] ? row[0].trim() : '';  // Verifica se o nome existe
+          const url = row[1] ? row[1].trim() : '';    // Verifica se a URL existe
 
-          // Armazena a URL associada ao nome do colaborador
-          psicologoUrls[nome] = url;
+          // Verifica se ambos nome e url são válidos
+          if (nome && url) {
+            // Armazena a URL associada ao nome do colaborador
+            psicologoUrls[nome] = url;
 
-          // Cria uma opção para o dropdown
-          const option = document.createElement("option");
-          option.value = nome;
-          option.textContent = nome;
-          selectPsicologo.appendChild(option);
+            // Cria uma opção para o dropdown
+            const option = document.createElement("option");
+            option.value = nome;
+            option.textContent = nome;
+            selectPsicologo.appendChild(option);
+          } else {
+            console.error("Nome ou URL ausente:", row);
+          }
         } else {
           console.error("Formato de linha inesperado:", row);
         }
