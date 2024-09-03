@@ -40,9 +40,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   let nome = form.querySelector('input[name="Nome"]').value.trim();
-  const selectPsicologo = form.querySelector('select[name="Psicólogo"]');
-  let psicologo = selectPsicologo.options[selectPsicologo.selectedIndex].textContent.trim();
-  const psicologoUrl = selectPsicologo.value.trim(); // URL da planilha do psicólogo
+  let psicologo = form.querySelector('select[name="Psicólogo"]').value.trim();
   const hora = form.querySelector('input[name="Hora"]').value.trim();
 
   nome = capitalizeFirstLetter(nome);
@@ -54,7 +52,6 @@ form.addEventListener("submit", async (e) => {
   formData.set("Nome", nome);
   formData.set("Psicólogo", psicologo);
 
-  // Enviar para a planilha principal
   fetch(scriptURL, {
     method: "POST",
     body: formData,
@@ -63,26 +60,12 @@ form.addEventListener("submit", async (e) => {
     .then((result) => {
       if (result.result === "success") {
         showFeedback("Obrigado, seu cadastro foi adicionado, fique de olho na data!", "success");
-
-        // Enviar os mesmos dados para a planilha do psicólogo selecionado
-        return fetch(psicologoUrl, {
-          method: "POST",
-          body: formData,
-        });
       } else if (result.result === "error" && result.message === "agendamento duplicado") {
         showFeedback("Este agendamento já foi feito. Por favor, selecione outro horário.", "warning");
       } else {
         showFeedback("Erro: " + result.message, "error");
       }
       form.reset();
-    })
-    .then((response) => response.json())
-    .then((result) => {
-      if (result.result === "success") {
-        console.log("Dados enviados para a planilha do psicólogo selecionado.");
-      } else {
-        console.error("Erro ao enviar para a planilha do psicólogo:", result.message);
-      }
     })
     .catch((error) => {
       console.error("Error!", error.message);
@@ -107,13 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
-  fetch("https://script.google.com/macros/s/AKfycbytTMgt97lHqH0kpT7ADC3f7VORd0eGOJRLVtzBft4/dev", {
-    mode: 'no-cors' // Desabilitar CORS
-  })
-    .then(response => {
-      // O modo 'no-cors' retorna um "opaque response", o que significa que você não pode acessar o conteúdo da resposta.
-      // Se precisar usar essa resposta, precisará que o servidor Google Apps Script permita o CORS.
-      console.log("Request sent with no-cors mode. Unable to process the response due to CORS policy.");
+  fetch("https://script.google.com/macros/s/AKfycbytTMgt97lHqH0kpT7ADC3f7VORd0eGOJRLVtzBft4/dev")
+    .then(response => response.json())
+    .then(data => {
+      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
+      data.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        selectPsicologo.appendChild(option);
+      });
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
 });
