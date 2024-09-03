@@ -40,7 +40,9 @@ form.addEventListener("submit", async (e) => {
   }
 
   let nome = form.querySelector('input[name="Nome"]').value.trim();
-  let psicologo = form.querySelector('select[name="Psicólogo"]').value.trim();
+  const selectPsicologo = form.querySelector('select[name="Psicólogo"]');
+  let psicologo = selectPsicologo.options[selectPsicologo.selectedIndex].textContent.trim();
+  const psicologoUrl = selectPsicologo.value.trim(); // URL da planilha do psicólogo
   const hora = form.querySelector('input[name="Hora"]').value.trim();
 
   nome = capitalizeFirstLetter(nome);
@@ -52,6 +54,7 @@ form.addEventListener("submit", async (e) => {
   formData.set("Nome", nome);
   formData.set("Psicólogo", psicologo);
 
+  // Enviar para a planilha principal
   fetch(scriptURL, {
     method: "POST",
     body: formData,
@@ -60,12 +63,26 @@ form.addEventListener("submit", async (e) => {
     .then((result) => {
       if (result.result === "success") {
         showFeedback("Obrigado, seu cadastro foi adicionado, fique de olho na data!", "success");
+
+        // Enviar os mesmos dados para a planilha do psicólogo selecionado
+        return fetch(psicologoUrl, {
+          method: "POST",
+          body: formData,
+        });
       } else if (result.result === "error" && result.message === "agendamento duplicado") {
         showFeedback("Este agendamento já foi feito. Por favor, selecione outro horário.", "warning");
       } else {
         showFeedback("Erro: " + result.message, "error");
       }
       form.reset();
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.result === "success") {
+        console.log("Dados enviados para a planilha do psicólogo selecionado.");
+      } else {
+        console.error("Erro ao enviar para a planilha do psicólogo:", result.message);
+      }
     })
     .catch((error) => {
       console.error("Error!", error.message);
@@ -94,10 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
       const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-      data.forEach(optionText => {
+      data.forEach(item => {
         const option = document.createElement("option");
-        option.value = optionText;
-        option.textContent = optionText;
+        option.value = item.url; // Define a URL como valor da opção
+        option.textContent = item.nome; // Define o nome como o texto exibido
         selectPsicologo.appendChild(option);
       });
     })
