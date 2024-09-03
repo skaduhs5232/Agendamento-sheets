@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
-  fetch("https://script.google.com/macros/s/AKfycbzLfkjIH-djQRwMhngOwnzrFYa4M0ZiPJReD6BH8YbCiRaJAd7DjUdQ_UN8-IGmf-0m/exec")
+  fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec")
     .then(response => response.json())
     .then(data => {
       const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
