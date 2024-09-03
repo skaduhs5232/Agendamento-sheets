@@ -107,16 +107,13 @@ document.addEventListener("DOMContentLoaded", function () {
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
-  fetch("https://script.google.com/macros/s/AKfycbytTMgt97lHqH0kpT7ADC3f7VORd0eGOJRLVtzBft4/dev")
-    .then(response => response.json())
-    .then(data => {
-      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
-      data.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item.url; // Define a URL como valor da opção
-        option.textContent = item.nome; // Define o nome como o texto exibido
-        selectPsicologo.appendChild(option);
-      });
+  fetch("https://script.google.com/macros/s/AKfycbytTMgt97lHqH0kpT7ADC3f7VORd0eGOJRLVtzBft4/dev", {
+    mode: 'no-cors' // Desabilitar CORS
+  })
+    .then(response => {
+      // O modo 'no-cors' retorna um "opaque response", o que significa que você não pode acessar o conteúdo da resposta.
+      // Se precisar usar essa resposta, precisará que o servidor Google Apps Script permita o CORS.
+      console.log("Request sent with no-cors mode. Unable to process the response due to CORS policy.");
     })
     .catch(error => console.error("Erro ao carregar os dados:", error));
 });
