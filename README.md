@@ -18,8 +18,7 @@ As informações dos Colaboradores são registradas na seguinte planilha do Goog
 
 As informações do Colaborador 1 individual são registradas na seguinte planilha do Google Sheets:
 
-[![Google Sheets](https://img.shields.io/badge/Google%20Sheets-A3C853?style=for-the-badge&logo=Google-Sheets&logoColor=white)]
-(https://docs.google.com/spreadsheets/d/1rR8QfT6rztA-oEtvTnphjEhtkcJFVp9bm16bT72Sm90/edit?gid=0#gid=0)
+[![Google Sheets](https://img.shields.io/badge/Google%20Sheets-A3C853?style=for-the-badge&logo=Google-Sheets&logoColor=white)](https://docs.google.com/spreadsheets/d/1rR8QfT6rztA-oEtvTnphjEhtkcJFVp9bm16bT72Sm90/edit?gid=0#gid=0)
 
 ## **Adicionar CSS Global às Páginas HTML**
 
