@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURLPrincipal = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -40,23 +40,34 @@ async function agendarNaPlanilhaDoPsicologo() {
       throw new Error("Não foi possível encontrar a URL correspondente ao psicólogo selecionado.");
     }
     
-    const url = entry.url;
+    const urlPsicologo = entry.url;
 
-    // Enviar o agendamento para a URL da planilha do psicólogo
+    // Enviar o agendamento para a planilha principal
     const formData = new FormData(form);
     formData.set("Nome", capitalizeFirstLetter(formData.get("Nome")));
     formData.set("Psicólogo", capitalizeFirstLetter(psicologoSelecionado));
 
-    const agendamentoResponse = await fetch(url, {
+    const responsePrincipal = await fetch(scriptURLPrincipal, {
       method: "POST",
       body: formData,
     });
 
-    const result = await agendamentoResponse.json();
-    if (result.result === "success") {
-      showFeedback("Agendamento realizado com sucesso!", "success");
+    const resultPrincipal = await responsePrincipal.json();
+    if (resultPrincipal.result !== "success") {
+      throw new Error("Erro ao agendar na planilha principal: " + resultPrincipal.message);
+    }
+
+    // Enviar o agendamento para a planilha do psicólogo
+    const responsePsicologo = await fetch(urlPsicologo, {
+      method: "POST",
+      body: formData,
+    });
+
+    const resultPsicologo = await responsePsicologo.json();
+    if (resultPsicologo.result === "success") {
+      showFeedback("Agendamento realizado com sucesso em ambas as planilhas!", "success");
     } else {
-      showFeedback("Erro ao realizar o agendamento: " + result.message, "error");
+      showFeedback("Agendamento realizado na planilha principal, mas houve um erro na planilha do psicólogo: " + resultPsicologo.message, "warning");
     }
   } catch (error) {
     console.error("Erro:", error);
@@ -66,7 +77,7 @@ async function agendarNaPlanilhaDoPsicologo() {
   }
 }
 
-// Enviar formulário e agendar na planilha do psicólogo
+// Enviar formulário e agendar nas duas planilhas
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
