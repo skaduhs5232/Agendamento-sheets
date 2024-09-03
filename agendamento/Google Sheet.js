@@ -1,4 +1,4 @@
-const scriptURLPrincipal = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
 
@@ -25,60 +25,8 @@ function showFeedback(message, type) {
   }, 5000);
 }
 
-// Função para agendar na planilha do psicólogo selecionado
-async function agendarNaPlanilhaDoPsicologo() {
-  const psicologoSelecionado = form.querySelector('select[name="Psicólogo"]').value.trim();
-  
-  try {
-    // Buscar a URL correspondente ao psicólogo selecionado
-    const response = await fetch("https://script.google.com/macros/s/AKfycbynMqCrcSvVt4Bfg2P77lqG_9YQu4BCRWnx4AS-_NceRHmizVItNgaXg0TJY2l3-w7l/exec");
-    const data = await response.json();
-    
-    // Procurar pela URL correspondente ao psicólogo selecionado
-    const entry = data.find(item => item.psicologo === psicologoSelecionado);
-    if (!entry || !entry.url) {
-      throw new Error("Não foi possível encontrar a URL correspondente ao psicólogo selecionado.");
-    }
-    
-    const urlPsicologo = entry.url;
-
-    // Enviar o agendamento para a planilha principal
-    const formData = new FormData(form);
-    formData.set("Nome", capitalizeFirstLetter(formData.get("Nome")));
-    formData.set("Psicólogo", capitalizeFirstLetter(psicologoSelecionado));
-
-    const responsePrincipal = await fetch(scriptURLPrincipal, {
-      method: "POST",
-      body: formData,
-    });
-
-    const resultPrincipal = await responsePrincipal.json();
-    if (resultPrincipal.result !== "success") {
-      throw new Error("Erro ao agendar na planilha principal: " + resultPrincipal.message);
-    }
-
-    // Enviar o agendamento para a planilha do psicólogo
-    const responsePsicologo = await fetch(urlPsicologo, {
-      method: "POST",
-      body: formData,
-    });
-
-    const resultPsicologo = await responsePsicologo.json();
-    if (resultPsicologo.result === "success") {
-      showFeedback("Agendamento realizado com sucesso em ambas as planilhas!", "success");
-    } else {
-      showFeedback("Agendamento realizado na planilha principal, mas houve um erro na planilha do psicólogo: " + resultPsicologo.message, "warning");
-    }
-  } catch (error) {
-    console.error("Erro:", error);
-    showFeedback("Erro ao processar o agendamento. Tente novamente mais tarde.", "error");
-  } finally {
-    loading.style.display = "none";
-  }
-}
-
-// Enviar formulário e agendar nas duas planilhas
-form.addEventListener("submit", (e) => {
+// Enviar formulário
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const dataInput = form.querySelector('input[name="Data"]').value;
@@ -100,7 +48,32 @@ form.addEventListener("submit", (e) => {
 
   loading.style.display = "flex";
 
-  agendarNaPlanilhaDoPsicologo();
+  const formData = new FormData(form);
+  formData.set("Nome", nome);
+  formData.set("Psicólogo", psicologo);
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.result === "success") {
+        showFeedback("Obrigado, seu cadastro foi adicionado, fique de olho na data!", "success");
+      } else if (result.result === "error" && result.message === "agendamento duplicado") {
+        showFeedback("Este agendamento já foi feito. Por favor, selecione outro horário.", "warning");
+      } else {
+        showFeedback("Erro: " + result.message, "error");
+      }
+      form.reset();
+    })
+    .catch((error) => {
+      console.error("Error!", error.message);
+      showFeedback("Houve um erro ao enviar os dados. Tente novamente mais tarde.", "error");
+    })
+    .finally(() => {
+      loading.style.display = "none";
+    });
 });
 
 // Inicializa outras funcionalidades da página após o DOM carregar
