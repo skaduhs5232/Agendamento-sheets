@@ -120,6 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(`Profissional ${profissionalSelecionado.nome} selecionado!`)
 
     scriptURL = profissionalSelecionado.url
+    console.log(scriptURL);
+    
 
   })
 
