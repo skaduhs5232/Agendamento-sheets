@@ -222,6 +222,7 @@ nav ul {
 }
 
 /* Estilo para o menu escondido em telas menores */
+/* Estilo para o menu escondido em telas menores */
 @media (max-width: 768px) {
   .menu-toggle {
       display: block; /* Exibe o botão de menu */
@@ -240,6 +241,10 @@ nav ul {
       z-index: 100; /* Para garantir que o menu fique acima do conteúdo */
   }
 
+  nav ul.active {
+      display: flex; /* Exibe o menu quando ativo */
+  }
+
   nav ul li {
       margin: 10px 0;
       text-align: center;
@@ -250,11 +255,8 @@ nav ul {
       text-decoration: none;
       font-size: 18px;
   }
-
-  nav ul.active {
-      display: flex; /* Exibe o menu quando ativo */
-  }
 }
+
 
 /* Para garantir que o conteúdo não fique coberto pelo menu */
 .content {

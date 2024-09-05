@@ -1,117 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandiê - Comunidade de Psicólogos</title>
-    <link rel="stylesheet" href="global-style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="icon" href="icons/brain-icon.ico" type="image/x-icon">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <i style="font-size: 30px;margin-right: 10px" class="fas fa-brain"></i>
-                <span>Sandiê</span>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sandiê</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="global-style.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container px-5">
+                <div class="logo">
+                    <i style="font-size: 30px;margin-right: 10px" class="fas fa-brain"></i>
+                    <span>Sandiê</span>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li>
+                    </ul>
+                </div>
             </div>
-            <nav>
-                <div class="menu-toggle" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
+        </nav>
+        <!-- Header-->
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Encontre o Melhor para Você</h1>
+                    <h2 class="masthead-subheading mb-0">Descubra como cuidar da sua mente pode transformar sua vida</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="./agendamento/Google Sheet.html">Agendar Consulta</a>
                 </div>
-                <ul id="menu">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="servicos.html">Serviços</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <!-- Carrossel de Imagens -->
-        <section class="hero">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="slide-content">
-                            <img src="images/psychologist.jpg" alt="Imagem 1">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <h1 class="overlay-title">Encontre o Melhor para Você</h1>
-                                    <p class="overlay-text">Especialistas qualificados para ajudar você a alcançar seu bem-estar mental.</p>
-                                    <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slide-content">
-                            <img src="images/psicologia-2.jpg" alt="Imagem 2">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <h1 class="overlay-title">Sua Jornada Começa Aqui</h1>
-                                    <p class="overlay-text">Descubra como cuidar da sua mente pode transformar sua vida.</p>
-                                    <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slide-content">
-                            <img src="images/psicologia3.webp" alt="Imagem 3">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <h1 class="overlay-title">Apoio Profissional</h1>
-                                    <p class="overlay-text">Estamos aqui para ouvir e ajudar você a superar desafios.</p>
-                                    <a href="./agendamento/Google Sheet.html" class="button">Agendar Consulta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Navegação do Swiper -->
-                <div class="swiper-pagination"></div>
             </div>
-        </section>
-        
-        
-        
-
-        <!-- Seção de Detalhes -->
-        <section class="details">
-            <div class="container">
-                <div class="detail-card">
-                    <i class="fas fa-user-md"></i>
-                    <h3>Equipe Qualificada</h3>
-                    <p>Contamos com psicólogos experientes e comprometidos com o seu bem-estar mental.</p>
-                </div>
-                <div class="detail-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Agendamento Fácil</h3>
-                    <p>Agende consultas online de maneira rápida e conveniente, diretamente do seu dispositivo.</p>
-                </div>
-                <div class="detail-card">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>Atendimento Personalizado</h3>
-                    <p>Nossos profissionais oferecem atendimento personalizado para atender às suas necessidades.</p>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
+        <!-- Content section 1-->
+        <section id="scroll">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">For those about to rock...</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Sandiê. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-    <script src="script.js"></script>
-</body>
+        <!-- Content section 2-->
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <h2 class="display-4">We salute you!</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content section 3-->
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Let there be rock!</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-black">
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="script.js"></script>
+    </body>
 </html>
