@@ -76,7 +76,12 @@ form.addEventListener("submit", async (e) => {
         // Agora, envie a mesma informação para a planilha individual.
         if (scriptURL) {
           fetch(scriptURL, { method: "POST", body: formData })
-            .then((res) => res.json())
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error("Erro na resposta da planilha individual");
+              }
+              return res.json();
+            })
             .then((resResult) => {
               console.log("Enviado para planilha individual:", resResult);
             })
