@@ -8264,7 +8264,7 @@ textarea.form-control-lg {
 }
 
 .rounded-circle {
-  border-radius: 50% !important;
+  border-radius: 15% !important;
 }
 
 .rounded-pill {
@@ -10840,7 +10840,7 @@ html {
 .navbar-custom {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: transparent;
 }
 .navbar-custom .navbar-brand {
   text-transform: uppercase;
@@ -10855,10 +10855,17 @@ html {
   letter-spacing: 0.1rem;
 }
 
+.navbar-hidden {
+  transform: translateY(-100%); /* Move a navbar para fora da tela */
+  transition: transform 0.3s ease-in-out; /* Animação suave ao esconder/aparecer */
+}
+
+/* aqui tbm */
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: calc(7rem + 72px);
+  height: 100dvh;
+  padding-top: 6rem;
   padding-bottom: 7rem;
   background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
   background-repeat: no-repeat;
@@ -10876,11 +10883,12 @@ header.masthead .masthead-content .masthead-heading {
 header.masthead .masthead-content .masthead-subheading {
   font-size: 2rem;
 }
+/* aqui */
 header.masthead .bg-circle {
   z-index: 0;
   position: absolute;
   border-radius: 100%;
-  background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+  background: linear-gradient(0deg, #141B41 0%, #4D243D 100%);
 }
 header.masthead .bg-circle-1 {
   height: 90rem;
@@ -10908,15 +10916,13 @@ header.masthead .bg-circle-4 {
 }
 
 @media (min-width: 992px) {
-  header.masthead {
-    padding-top: calc(10rem + 55px);
-    padding-bottom: 10rem;
-  }
+ 
   header.masthead .masthead-content .masthead-heading {
-    font-size: 6rem;
+    font-size: 5rem;
+    padding-top: 90px;
   }
   header.masthead .masthead-content .masthead-subheading {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 
