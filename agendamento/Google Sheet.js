@@ -69,7 +69,7 @@ form.addEventListener("submit", async (e) => {
     .then((result) => {
       if (result.result === "success") {
         showFeedback(
-          "Obrigado, seu cadastro foi adicionado, fique de olho na data!",
+          "Obrigado, seu cadastro foi adicionado com sucesso! fique de olho na data!",
           "success"
         );
 
