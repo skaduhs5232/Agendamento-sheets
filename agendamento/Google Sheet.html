@@ -1,49 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marque seu Atendimento - Sandiê</title>
-    <link rel="stylesheet" href="../css/Google Sheet.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="icons/brain-icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/loader.css">
-</head>
-<body>
-	<header>
-        <div class="container">
-            <div class="logo">
-                <i class="fa fa-brain"></i> Sandie
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sandiê</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="../css/form.css">
+        <link rel="stylesheet" href="../css/Google Sheet.css">
+        <link rel="stylesheet" href="../css/loader.css">
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container px-5">
+                <div class="logo">
+                    <i style="font-size: 30px;margin-right: 10px" class="fas fa-brain"></i>
+                    <span>Sandiê</span>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Sobre Nós</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="menu-toggle">
-                &#9776; <!-- Ícone de hambúrguer -->
+        </nav>
+        <!-- Header-->
+        <header id="inicio" class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <section class="content">
+                        <div class="container">
+                            <!-- <form method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
+                                <h3>Marque seu atendimento</h3>
+                                <input type="text" name="Nome" placeholder="Seu nome" required>
+                                <select id="profissional" name="Psicólogo" required>
+                                    <option value="" disabled selected>Selecione o Psicólogo</option>
+                                </select>
+                                <input type="date" name="Data" placeholder="Data" required>
+                                <input type="time" name="Hora" placeholder="Hora" required>
+                                <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
+                                <input type="submit" value="Enviar" id="submit">
+                            </form> -->
+                            <form class="form" method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
+                                <p class="title">Marque seu atendimento</p>
+                                <!-- <p class="message">sla alguma coisa</p> -->
+                                <div class="flex">
+                                    <label>
+                                        <span class="titulo">Nome Completo</span>
+                                        <input class="input" type="text" name="Nome" placeholder="Digite seu Nome" required>
+                                    </label>
+                                    <label>
+                                        <span class="titulo">Psicólogo</span>
+                                        <select id="profissional" name="Psicólogo" required>
+                                            <option value="" disabled selected>Selecione o Psicólogo</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <label>
+                                    <span class="titulo">Data da Consulta</span>
+                                    <input class="input" type="date" name="Data" required>
+                                </label> 
+                                <label>
+                                    <span class="titulo">Horário da consulta</span>
+                                    <input class="input" type="time" name="Hora"  required>
+                                </label>
+                                <label>
+                                    <span class="titulo">Observações</span>
+                                    <textarea class="input" name="Observações" rows="7" placeholder="Digite uma observação para o psicólogo" ></textarea>
+                                </label>
+                                <button type="submit" class="submit">Enviar</button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="servicos.html">Serviços</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
 
-    <section class="content">
-        <div class="container">
-            <form method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
-                <h3>Marque seu atendimento</h3>
-                <input type="text" name="Nome" placeholder="Seu nome" required>
-                <select id="profissional" name="Psicólogo" required>
-                    <option value="" disabled selected>Selecione o Psicólogo</option>
-                </select>
-                <input type="date" name="Data" placeholder="Data" required>
-                <input type="time" name="Hora" placeholder="Hora" required>
-                <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
-                <input type="submit" value="Enviar" id="submit">
-            </form>
-        </div>
-    </section>
+   
 
     <div id="loading" class="loading-container" style="display: none;">
         <svg class="pl" width="240" height="240" viewBox="0 0 240 240">

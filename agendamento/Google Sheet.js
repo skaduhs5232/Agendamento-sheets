@@ -124,15 +124,12 @@ form.addEventListener("submit", async (e) => {
 
 // Inicializa outras funcionalidades da página após o DOM carregar
 document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navMenu = document.querySelector("nav ul");
+
   const selectProfissional = document.getElementById("profissional");
 
   selectProfissional.setAttribute("disabled", "");
 
-  menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("active");
-  });
+ 
 
   selectProfissional.addEventListener("change", (event) => {
     let profissionalSelecionado = planilhasPsicologos.find(
@@ -175,17 +172,4 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Erro ao carregar os dados:", error));
 });
 
-const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav ul');
 
-    // Adiciona um listener de clique para alternar a classe 'active'
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active'); // Alterna a classe 'active' para mostrar/ocultar o menu
-    });
-
-    // Fecha o menu quando um item for clicado (opcional)
-    nav.querySelectorAll('li').forEach(item => {
-        item.addEventListener('click', () => {
-            nav.classList.remove('active');
-        });
-    });
