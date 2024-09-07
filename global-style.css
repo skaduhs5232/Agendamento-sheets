@@ -10867,7 +10867,7 @@ header.masthead {
   height: 100dvh;
   padding-top: 6rem;
   padding-bottom: 7rem;
-  background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
+  background: linear-gradient(0deg, #A7C7E7  0%, #F7F7FF  100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
@@ -10888,7 +10888,7 @@ header.masthead .bg-circle {
   z-index: 0;
   position: absolute;
   border-radius: 100%;
-  background: linear-gradient(0deg, #141B41 0%, #4D243D 100%);
+  background: linear-gradient(0deg, #C03221 0%, #545E75 100%);
 }
 header.masthead .bg-circle-1 {
   height: 90rem;
