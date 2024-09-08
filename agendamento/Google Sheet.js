@@ -82,7 +82,7 @@ form.addEventListener("submit", async (e) => {
               }
               return res.json();
             })
-            .then((resResult) => {
+            .then((resResult) => {  
               console.log("Enviado para planilha individual:", resResult);
             })
             .catch((error) => {
