@@ -11053,3 +11053,26 @@ select {
   margin-bottom: 20px;
 }
 
+.input-container {
+  display: flex;
+  gap: 20px; /* Espaçamento entre os dois inputs */
+}
+
+.input-container label {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Define que cada label ocupa o mesmo espaço */
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.titulo {
+  margin-bottom: 5px;
+  font-weight: bold;
+}

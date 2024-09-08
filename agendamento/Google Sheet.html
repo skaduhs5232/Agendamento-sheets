@@ -54,7 +54,7 @@
                             <form class="form" method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
                                 <p class="title">Marque seu atendimento</p>
                                 <!-- <p class="message">sla alguma coisa</p> -->
-                                <div class="flex">
+                                <div class="input-container">
                                     <label>
                                         <span class="titulo">Nome Completo</span>
                                         <input class="input" type="text" name="Nome" placeholder="Digite seu Nome" required>
@@ -66,14 +66,17 @@
                                         </select>
                                     </label>
                                 </div>
-                                <label>
-                                    <span class="titulo">Data da Consulta</span>
-                                    <input class="input" type="date" name="Data" required>
-                                </label> 
-                                <label>
-                                    <span class="titulo">Horário da consulta</span>
-                                    <input class="input" type="time" name="Hora"  required>
-                                </label>
+                                <div class="input-container">
+                                    <label>
+                                      <span class="titulo">Data da Consulta</span>
+                                      <input class="input" type="date" name="Data" required>
+                                    </label> 
+                                    <label>
+                                      <span class="titulo">Horário da consulta</span>
+                                      <input class="input" type="time" name="Hora" required>
+                                    </label>
+                                  </div>
+                                  
                                 <label>
                                     <span class="titulo">Observações</span>
                                     <textarea class="input" name="Observações" rows="7" placeholder="Digite uma observação para o psicólogo" ></textarea>
