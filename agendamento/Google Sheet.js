@@ -129,8 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   selectProfissional.setAttribute("disabled", "");
 
- 
-
   selectProfissional.addEventListener("change", (event) => {
     let profissionalSelecionado = planilhasPsicologos.find(
       (x) => x.nome === event.target.value
@@ -172,4 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Erro ao carregar os dados:", error));
 });
 
-
+fetch(mainURL, {
+  redirect: "follow",
+  method: "GET",
+  body: {},
+}).then((response) => console.log(response.json()))
