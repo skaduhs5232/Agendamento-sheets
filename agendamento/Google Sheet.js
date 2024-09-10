@@ -172,6 +172,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 fetch(mainURL, {
   redirect: "follow",
-  method: "GET",
-  body: {},
+  method: "GET"
 }).then((response) => console.log(response.json()))
