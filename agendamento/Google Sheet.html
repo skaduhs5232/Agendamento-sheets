@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -72,9 +72,11 @@
                                       <input class="input" type="date" name="Data" required>
                                     </label> 
                                     <label>
-                                      <span class="titulo">Horário da consulta</span>
-                                      <input class="input" type="time" name="Hora" required>
-                                    </label>
+                                        <span class="titulo">Horário da consulta</span>
+                                        <select id="horario" name="Hora" required>
+                                          <option value="" disabled selected>Selecione o Horário</option>
+                                        </select>
+                                      </label>
                                   </div>
                                   
                                 <label>
@@ -93,8 +95,6 @@
             <div class="bg-circle-4 bg-circle"></div>
         </header>
 
-   
-
     <div id="loading" class="loading-container" style="display: none;">
         <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
             <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
@@ -104,13 +104,14 @@
         </svg>
         <p>Enviando...</p>
     </div>
-    
 
-    <!-- Container para mensagens de feedback -->
+    <footer>
+        <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Sandiê</p></div>
+    </footer>
+    
     <div id="feedback-container" style="display: none;">
         <div id="feedback-message" class="feedback-message"></div>
     </div>
-
     <script src="Google Sheet.js"></script>
     <script src="../script.js"></script>
 </body>

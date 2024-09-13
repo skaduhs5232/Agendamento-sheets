@@ -82,7 +82,7 @@ form.addEventListener("submit", async (e) => {
               }
               return res.json();
             })
-            .then((resResult) => {  
+            .then((resResult) => {
               console.log("Enviado para planilha individual:", resResult);
             })
             .catch((error) => {
@@ -124,7 +124,6 @@ form.addEventListener("submit", async (e) => {
 
 // Inicializa outras funcionalidades da página após o DOM carregar
 document.addEventListener("DOMContentLoaded", function () {
-
   const selectProfissional = document.getElementById("profissional");
 
   selectProfissional.setAttribute("disabled", "");
@@ -137,10 +136,74 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profissionalSelecionado) {
       scriptURL = profissionalSelecionado.url;
       console.log(`URL do profissional selecionado: ${scriptURL}`);
+
+      // Agora, faça a requisição para obter os horários
+      carregarHorariosDisponiveis();
     } else {
       console.error("Profissional não encontrado.");
     }
   });
+
+  // Função para gerar e exibir os horários disponíveis no dropdown
+  function gerarHorariosDisponiveis(horariosOcupados) {
+    if (!Array.isArray(horariosOcupados)) {
+      console.error(
+        "Horários ocupados não são uma lista válida:",
+        horariosOcupados
+      );
+      return [];
+    }
+
+    const inicio = 8; // 8:00
+    const fim = 18; // 18:00
+    const intervalos = [];
+
+    // Gerar os intervalos de 1 hora e filtrar os horários ocupados
+    for (let i = inicio; i <= fim; i++) {
+      const hora = i.toString().padStart(2, "0") + ":00";
+      if (!horariosOcupados.includes(hora)) {
+        // Adicionar apenas horários que não estão ocupados
+        intervalos.push(hora);
+      }
+    }
+
+    return intervalos;
+  }
+
+  // Função que obtém os horários disponíveis do Google Apps Script
+  function carregarHorariosDisponiveis() {
+    if (!scriptURL) {
+      console.error("scriptURL is empty");
+      return;
+    }
+
+    fetch("scriptURL")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dados recebidos:", data);
+
+        const horariosOcupados = data.hora;
+        console.log(horariosOcupados); // Verifica se a propriedade 'hora' está presente
+        if (!horariosOcupados) {
+          console.error('Resposta não contém "hora":', data);
+          throw new Error('A resposta não contém a propriedade "hora"'); // Corrigir a propriedade para 'hora'
+        }
+
+        const horarioSelect = document.getElementById("horario");
+        horarioSelect.innerHTML =
+          '<option value="" disabled selected>Selecione o Horário</option>'; // Limpar opções anteriores
+
+        // Gerar e adicionar horários disponíveis ao select
+        const horariosDisponiveis = gerarHorariosDisponiveis(horariosOcupados);
+        horariosDisponiveis.forEach((hora) => {
+          const option = document.createElement("option");
+          option.value = hora;
+          option.textContent = hora;
+          horarioSelect.appendChild(option);
+        });
+      })
+      .catch((error) => console.error("Erro ao carregar horários:", error));
+  }
 
   const dataInput = form.querySelector('input[name="Data"]');
   const dataAtual = new Date().toISOString().split("T")[0];
@@ -170,7 +233,41 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Erro ao carregar os dados:", error));
 });
 
-fetch(mainURL, {
-  redirect: "follow",
-  method: "GET"
-}).then((response) => console.log(response.json()))
+fetch(
+  "https://script.google.com/macros/s/AKfycbwDM7wIH0c3FOzgw6Y-9MxVI7alohX_sw2MIg62OfVGcCdA9k_rvsojZefj7YD3Z_jB/exec",
+  {
+    redirect: "follow",
+    method: "GET",
+  }
+)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Erro na resposta da API: " + response.status);
+    }
+    return response.json(); // Aqui, você está esperando uma resposta JSON
+  })
+  .then((data) => {
+    console.log("Dados recebidos:", data);
+    // Se os dados retornados forem uma lista de horários
+    const horariosOcupados = data.hora;
+    console.log(horariosOcupados); // Verifica se a propriedade 'horas' está presente
+    if (!horariosOcupados) {
+      throw new Error('A resposta não contém a propriedade "horas"');
+    }
+
+    const horarioSelect = document.getElementById("horario");
+    horarioSelect.innerHTML =
+      '<option value="" disabled selected>Selecione o Horário</option>'; // Limpar opções anteriores
+
+    // Gerar horários disponíveis com base nos horários ocupados
+    const horariosDisponiveis = gerarHorariosDisponiveis(horariosOcupados);
+
+    // Adicionar horários ao select
+    horariosDisponiveis.forEach((hora) => {
+      const option = document.createElement("option");
+      option.value = hora;
+      option.textContent = hora;
+      horarioSelect.appendChild(option);
+    });
+  })
+  .catch((error) => console.error("Erro ao carregar horários:", error));
