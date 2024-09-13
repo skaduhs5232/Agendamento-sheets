@@ -1,6 +1,5 @@
 // Este link é para a planilha "mestre" (administradora).
-var mainURL =
-  "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
+var mainURL = "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 
 // Este link é para a planilha individual de cada psicólogo.
 var scriptURL = "";
@@ -16,7 +15,7 @@ function capitalizeFirstLetter(str) {
   return str
     .toLowerCase()
     .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
 
@@ -65,27 +64,27 @@ form.addEventListener("submit", async (e) => {
     method: "POST",
     body: formData,
   })
-    .then((response) => response.json())
-    .then((result) => {
+    .then(response => response.json())
+    .then(result => {
       if (result.result === "success") {
         showFeedback(
-          "Obrigado, seu cadastro foi adicionado com sucesso! fique de olho na data!",
+          "Obrigado, seu cadastro foi adicionado com sucesso! Fique de olho na data!",
           "success"
         );
 
         // Agora, envie a mesma informação para a planilha individual.
         if (scriptURL) {
           fetch(scriptURL, { method: "POST", body: formData })
-            .then((res) => {
+            .then(res => {
               if (!res.ok) {
                 throw new Error("Erro na resposta da planilha individual");
               }
               return res.json();
             })
-            .then((resResult) => {
+            .then(resResult => {
               console.log("Enviado para planilha individual:", resResult);
             })
-            .catch((error) => {
+            .catch(error => {
               console.error("Error fetching individual URL:", error);
               showFeedback(
                 "Erro ao enviar para a planilha individual.",
@@ -96,10 +95,7 @@ form.addEventListener("submit", async (e) => {
           console.error("scriptURL is empty");
           showFeedback("Por favor, selecione um psicólogo.", "warning");
         }
-      } else if (
-        result.result === "error" &&
-        result.message === "agendamento duplicado"
-      ) {
+      } else if (result.result === "error" && result.message === "agendamento duplicado") {
         showFeedback(
           "Este agendamento já foi feito. Por favor, selecione outro horário.",
           "warning"
@@ -110,7 +106,7 @@ form.addEventListener("submit", async (e) => {
 
       form.reset();
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Error!", error.message);
       showFeedback(
         "Houve um erro ao enviar os dados. Tente novamente mais tarde.",
@@ -147,10 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Função para gerar e exibir os horários disponíveis no dropdown
   function gerarHorariosDisponiveis(horariosOcupados) {
     if (!Array.isArray(horariosOcupados)) {
-      console.error(
-        "Horários ocupados não são uma lista válida:",
-        horariosOcupados
-      );
+      console.error("Horários ocupados não são uma lista válida:", horariosOcupados);
       return [];
     }
 
@@ -176,35 +169,45 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("scriptURL is empty");
       return;
     }
-
-    fetch(scriptURL)    
-      .then((response) => response.json())
-      .then((data) => {
+  
+    // Adiciona um parâmetro para verificar o método GET
+    const url = new URL(scriptURL);
+    url.searchParams.append('method', 'GET');
+  
+    fetch(url.toString())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Erro na resposta da API: " + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
         console.log(scriptURL);
         console.log("Dados recebidos:", data);
-
+  
         const horariosOcupados = data.hora;
         console.log(horariosOcupados); // Verifica se a propriedade 'hora' está presente
         if (!horariosOcupados) {
-          console.error('Resposta não contém "hora":', data);
-          throw new Error('A resposta não contém a propriedade "hora"'); // Corrigir a propriedade para 'hora'
+          throw new Error('A resposta não contém a propriedade "hora"');
         }
-
+  
         const horarioSelect = document.getElementById("horario");
         horarioSelect.innerHTML =
           '<option value="" disabled selected>Selecione o Horário</option>'; // Limpar opções anteriores
-
+  
         // Gerar e adicionar horários disponíveis ao select
         const horariosDisponiveis = gerarHorariosDisponiveis(horariosOcupados);
-        horariosDisponiveis.forEach((hora) => {
+        horariosDisponiveis.forEach(hora => {
           const option = document.createElement("option");
           option.value = hora;
           option.textContent = hora;
           horarioSelect.appendChild(option);
         });
       })
-      .catch((error) => console.error("Erro ao carregar horários:", error));
+      .catch(error => console.error("Erro ao carregar horários:", error));
   }
+  
+  
 
   const dataInput = form.querySelector('input[name="Data"]');
   const dataAtual = new Date().toISOString().split("T")[0];
@@ -212,17 +215,13 @@ document.addEventListener("DOMContentLoaded", function () {
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
-  fetch(
-    "https://script.google.com/macros/s/AKfycbwDM7wIH0c3FOzgw6Y-9MxVI7alohX_sw2MIg62OfVGcCdA9k_rvsojZefj7YD3Z_jB/exec"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const selectPsicologo = document.querySelector(
-        'select[name="Psicólogo"]'
-      );
+  fetch("https://script.google.com/macros/s/AKfycbwDM7wIH0c3FOzgw6Y-9MxVI7alohX_sw2MIg62OfVGcCdA9k_rvsojZefj7YD3Z_jB/exec")
+    .then(response => response.json())
+    .then(data => {
+      const selectPsicologo = document.querySelector('select[name="Psicólogo"]');
       planilhasPsicologos = data;
 
-      data.forEach((x) => {
+      data.forEach(x => {
         const option = document.createElement("option");
         option.value = x["nome"];
         option.textContent = x["nome"];
@@ -231,44 +230,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
       selectProfissional.removeAttribute("disabled");
     })
-    .catch((error) => console.error("Erro ao carregar os dados:", error));
+    .catch(error => console.error("Erro ao carregar os dados:", error));
 });
-
-fetch(
-  "https://script.google.com/macros/s/AKfycbwDM7wIH0c3FOzgw6Y-9MxVI7alohX_sw2MIg62OfVGcCdA9k_rvsojZefj7YD3Z_jB/exec",
-  {
-    redirect: "follow",
-    method: "GET",
-  }
-)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Erro na resposta da API: " + response.status);
-    }
-    return response.json(); // Aqui, você está esperando uma resposta JSON
-  })
-  .then((data) => {
-    console.log("Dados recebidos:", data);
-    // Se os dados retornados forem uma lista de horários
-    const horariosOcupados = data.hora;
-    console.log(horariosOcupados); // Verifica se a propriedade 'horas' está presente
-    if (!horariosOcupados) {
-      throw new Error('A resposta não contém a propriedade "horas"');
-    }
-
-    const horarioSelect = document.getElementById("horario");
-    horarioSelect.innerHTML =
-      '<option value="" disabled selected>Selecione o Horário</option>'; // Limpar opções anteriores
-
-    // Gerar horários disponíveis com base nos horários ocupados
-    const horariosDisponiveis = gerarHorariosDisponiveis(horariosOcupados);
-
-    // Adicionar horários ao select
-    horariosDisponiveis.forEach((hora) => {
-      const option = document.createElement("option");
-      option.value = hora;
-      option.textContent = hora;
-      horarioSelect.appendChild(option);
-    });
-  })
-  .catch((error) => console.error("Erro ao carregar horários:", error));
