@@ -177,9 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch("scriptURL")
+    fetch(scriptURL)    
       .then((response) => response.json())
       .then((data) => {
+        console.log(scriptURL);
         console.log("Dados recebidos:", data);
 
         const horariosOcupados = data.hora;
