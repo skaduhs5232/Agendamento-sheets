@@ -10868,17 +10868,28 @@ html {
 /* aqui tbm */
 header.masthead {
   position: relative;
-  overflow: hidden;
-  height: 100dvh;
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh; 
   padding-top: 6rem;
   padding-bottom: 7rem;
   background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
+  overflow: hidden; /* Evita que elementos saiam da tela */
   background-size: cover;
 }
+/* Centraliza o texto */
+.masthead-content {
+  text-align: center;
+  z-index: 1; /* Garante que o texto fique sobre os círculos */
+}
+
+
 header.masthead .masthead-content {
+  text-align: center;
   z-index: 1;
   position: relative;
 }
