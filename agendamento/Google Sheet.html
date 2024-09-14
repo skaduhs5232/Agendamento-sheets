@@ -55,24 +55,22 @@
                                         </select>
                                     </label>
                                 </div>
-                                <div class="input-container">
+                                <label>
+                                    <span class="titulo">E-mail</span>
+                                    <input class="input" type="text" name="Email" placeholder="Digite seu Nome" required>
+                                </label>
+                                <div class="input-container" style="padding: 0 0 10px 0;">
                                     <label>
                                       <span class="titulo">Data da Consulta</span>
                                       <input class="input" type="date" name="Data" required>
                                     </label> 
                                     <label>
                                         <span class="titulo">Horário da consulta</span>
-                                        <select class="input" name="Hora" >
-                                            <option value="default">Selecione um Horário</option>
+                                        <select class="input" name="Hora" required>
+                                            <option value="" disabled selected>Selecione um Horário</option>
                                         </select>
                                       </label>
-                                      
                                   </div>
-                                  
-                                <label>
-                                    <span class="titulo">Observações</span>
-                                    <textarea style="height: 100px; " class="input" name="Observações" rows="7" placeholder="Digite uma observação para o psicólogo" ></textarea>
-                                </label>
                                 <button type="submit" class="submit">Enviar</button>
                             </form>
                         </div>
