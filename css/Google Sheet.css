@@ -10865,6 +10865,7 @@ header.masthead {
   position: relative;
   overflow: hidden;
   height: auto;
+  min-height: 99dvh;
   padding-top: 6rem;
   padding-bottom: 7rem;
   background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
