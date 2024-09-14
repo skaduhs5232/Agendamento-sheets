@@ -40,17 +40,6 @@
                 <div class="container px-5">
                     <section class="content">
                         <div class="container">
-                            <!-- <form method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
-                                <h3>Marque seu atendimento</h3>
-                                <input type="text" name="Nome" placeholder="Seu nome" required>
-                                <select id="profissional" name="Psicólogo" required>
-                                    <option value="" disabled selected>Selecione o Psicólogo</option>
-                                </select>
-                                <input type="date" name="Data" placeholder="Data" required>
-                                <input type="time" name="Hora" placeholder="Hora" required>
-                                <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
-                                <input type="submit" value="Enviar" id="submit">
-                            </form> -->
                             <form class="form" method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
                                 <p class="title">Marque seu atendimento</p>
                                 <!-- <p class="message">sla alguma coisa</p> -->
@@ -72,9 +61,12 @@
                                       <input class="input" type="date" name="Data" required>
                                     </label> 
                                     <label>
-                                      <span class="titulo">Horário da consulta</span>
-                                      <input class="input" type="time" name="Hora" required>
-                                    </label>
+                                        <span class="titulo">Horário da consulta</span>
+                                        <select class="input" name="Hora" >
+                                            <option value="default">Selecione um Horário</option>
+                                        </select>
+                                      </label>
+                                      
                                   </div>
                                   
                                 <label>

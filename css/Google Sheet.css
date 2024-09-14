@@ -11077,3 +11077,13 @@ select {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
+footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; /* Empurra o footer para o final da página */
+  width: 100%;
+}
+

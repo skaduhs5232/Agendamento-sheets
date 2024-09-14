@@ -2,7 +2,6 @@
 var mainURL =
   "https://script.google.com/macros/s/AKfycbzEDOu7dFI2mE79PeniKjgyoQjx0A9l7iNU5CdNjf6HC1yvcCo7XKVFlKISnB89C2ntTQ/exec";
 
-// Este link é para a planilha individual de cada psicólogo.
 var scriptURL = "";
 
 // Este é um dicionário que contém todos os nomes e links para cada planilha.
@@ -10,6 +9,10 @@ let planilhasPsicologos = {};
 
 const form = document.forms["contact-form"];
 const loading = document.getElementById("loading");
+const horarioSelect = document.querySelector('select[name="Hora"]');
+
+// Desabilita o select de horário até que psicólogo e data sejam escolhidos
+horarioSelect.setAttribute("disabled", true);
 
 // Função para capitalizar a primeira letra de cada palavra
 function capitalizeFirstLetter(str) {
@@ -34,7 +37,65 @@ function showFeedback(message, type) {
   }, 5000);
 }
 
-// Enviar formulário
+function gerarHorariosDisponiveis() {
+  const horarios = [];
+  for (let h = 8; h <= 18; h++) {
+    const horaFormatada = h.toString().padStart(2, "0") + ":00"; // Adiciona zero à esquerda se necessário
+    horarios.push(horaFormatada);
+  }
+  return horarios;
+}
+
+// Função para preencher o select com horários disponíveis
+function preencherHorarios(horariosDisponiveis) {
+  horarioSelect.innerHTML = ""; // Limpa opções anteriores
+  horariosDisponiveis.forEach((hora) => {
+    const option = document.createElement("option");
+    option.value = hora;
+    option.textContent = hora;
+    horarioSelect.appendChild(option);
+  });
+}
+
+function converterDataParaISO(data) {
+  const [dia, mes, ano] = data.split("/");
+  return `${ano}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+}
+
+// Função para obter horários da planilha e filtrar por data
+function obterHorarios(scriptURL, dataSelecionada) {
+  fetch(scriptURL)
+    .then((response) => response.json())
+    .then((data) => {
+      // Console log de todos os horários e datas retornados pela API
+      console.log("Horários e datas recebidos:", data.horarios);
+
+      const horariosOcupados = data.horarios
+        .filter((horario) => {
+          // Converte a data no formato 'DD/MM/AAAA' para 'AAAA-MM-DD' e compara
+          return converterDataParaISO(horario.data) === dataSelecionada;
+        })
+        .map((horario) => horario.hora); // Pega só os horários ocupados
+      console.log("Horários ocupados:", horariosOcupados);
+
+      // Gerar todos os horários disponíveis
+      const horariosDisponiveis = gerarHorariosDisponiveis();
+
+      // Filtrar para remover horários ocupados
+      const horariosFiltrados = horariosDisponiveis.filter(
+        (hora) => !horariosOcupados.includes(hora)
+      );
+
+      // Preencher o dropdown com horários disponíveis
+      preencherHorarios(horariosFiltrados);
+    })
+    .catch((error) => {
+      console.error("Erro ao obter os horários:", error);
+      showFeedback("Erro ao carregar os horários.", "error");
+    });
+}
+
+// Função para enviar o formulário
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -50,7 +111,6 @@ form.addEventListener("submit", async (e) => {
 
   let nome = form.querySelector('input[name="Nome"]').value.trim();
   let psicologo = form.querySelector('select[name="Psicólogo"]').value.trim();
-  const hora = form.querySelector('input[name="Hora"]').value.trim();
 
   nome = capitalizeFirstLetter(nome);
   psicologo = capitalizeFirstLetter(psicologo);
@@ -82,7 +142,7 @@ form.addEventListener("submit", async (e) => {
               }
               return res.json();
             })
-            .then((resResult) => {  
+            .then((resResult) => {
               console.log("Enviado para planilha individual:", resResult);
             })
             .catch((error) => {
@@ -124,8 +184,8 @@ form.addEventListener("submit", async (e) => {
 
 // Inicializa outras funcionalidades da página após o DOM carregar
 document.addEventListener("DOMContentLoaded", function () {
-
   const selectProfissional = document.getElementById("profissional");
+  const dataInput = form.querySelector('input[name="Data"]');
 
   selectProfissional.setAttribute("disabled", "");
 
@@ -137,14 +197,32 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profissionalSelecionado) {
       scriptURL = profissionalSelecionado.url;
       console.log(`URL do profissional selecionado: ${scriptURL}`);
+
+      // Habilita o campo de horário após selecionar psicólogo e data
+      const dataSelecionada = dataInput.value;
+      if (dataSelecionada) {
+        horarioSelect.removeAttribute("disabled");
+        obterHorarios(scriptURL, dataSelecionada);
+      }
     } else {
       console.error("Profissional não encontrado.");
     }
   });
 
-  const dataInput = form.querySelector('input[name="Data"]');
-  const dataAtual = new Date().toISOString().split("T")[0];
+  // Habilita o select de horário apenas após selecionar data e psicólogo
+  dataInput.addEventListener("change", () => {
+    const psicologoSelecionado = selectProfissional.value;
+    const dataSelecionada = dataInput.value;
 
+    if (psicologoSelecionado && dataSelecionada) {
+      horarioSelect.removeAttribute("disabled");
+      obterHorarios(scriptURL, dataSelecionada);
+    } else {
+      horarioSelect.setAttribute("disabled", true);
+    }
+  });
+
+  const dataAtual = new Date().toISOString().split("T")[0];
   dataInput.setAttribute("min", dataAtual);
 
   // Carregar os psicólogos da planilha
@@ -169,8 +247,3 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Erro ao carregar os dados:", error));
 });
-
-fetch(mainURL, {
-  redirect: "follow",
-  method: "GET"
-}).then((response) => console.log(response.json()))
