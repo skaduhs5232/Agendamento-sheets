@@ -18,6 +18,9 @@
     max-width: 70%; /* O formulário ocupará 70% da largura da tela */
     padding: 30px; /* Aumenta o padding em telas grandes */
   }
+  .input-container {
+    flex-direction: row; /* Inputs lado a lado em telas grandes */
+  }
 }
 
 /* Para telas médias */
@@ -25,6 +28,9 @@
   .form {
     max-width: 85%; /* O formulário ocupará 85% da largura da tela */
     padding: 25px; /* Ajusta o padding para telas médias */
+  }
+  .input-container {
+    flex-direction: row; /* Inputs lado a lado em telas médias */
   }
 }
 
@@ -34,7 +40,11 @@
     max-width: 100%; /* O formulário ocupa toda a largura da tela */
     padding: 20px; /* Mantém o padding menor para telas pequenas */
   }
+  .input-container {
+    flex-direction: column; /* Inputs ficam um abaixo do outro */
+  }
 }
+
 
 .title {
   font-size: 28px;
