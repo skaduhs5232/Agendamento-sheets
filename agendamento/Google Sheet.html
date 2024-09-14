@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -40,17 +40,6 @@
                 <div class="container px-5">
                     <section class="content">
                         <div class="container">
-                            <!-- <form method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
-                                <h3>Marque seu atendimento</h3>
-                                <input type="text" name="Nome" placeholder="Seu nome" required>
-                                <select id="profissional" name="Psicólogo" required>
-                                    <option value="" disabled selected>Selecione o Psicólogo</option>
-                                </select>
-                                <input type="date" name="Data" placeholder="Data" required>
-                                <input type="time" name="Hora" placeholder="Hora" required>
-                                <textarea name="Observações" rows="7" placeholder="Observações"></textarea>
-                                <input type="submit" value="Enviar" id="submit">
-                            </form> -->
                             <form class="form" method="post" action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5" name="contact-form">
                                 <p class="title">Marque seu atendimento</p>
                                 <!-- <p class="message">sla alguma coisa</p> -->
@@ -73,10 +62,11 @@
                                     </label> 
                                     <label>
                                         <span class="titulo">Horário da consulta</span>
-                                        <select id="horario" name="Hora" required>
-                                          <option value="" disabled selected>Selecione o Horário</option>
+                                        <select class="input" name="Hora" >
+                                            <option value="default">Selecione um Horário</option>
                                         </select>
                                       </label>
+                                      
                                   </div>
                                   
                                 <label>
@@ -95,6 +85,8 @@
             <div class="bg-circle-4 bg-circle"></div>
         </header>
 
+   
+
     <div id="loading" class="loading-container" style="display: none;">
         <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
             <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
@@ -104,14 +96,15 @@
         </svg>
         <p>Enviando...</p>
     </div>
-
-    <footer>
+    
+    <footer class="py-3 bg-black">
         <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Sandiê</p></div>
     </footer>
-    
+    <!-- Container para mensagens de feedback -->
     <div id="feedback-container" style="display: none;">
         <div id="feedback-message" class="feedback-message"></div>
     </div>
+
     <script src="Google Sheet.js"></script>
     <script src="../script.js"></script>
 </body>
