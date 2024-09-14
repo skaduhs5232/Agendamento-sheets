@@ -62,8 +62,19 @@ function converterDataParaISO(data) {
   return `${ano}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
 }
 
+function mostrarLoaderHorarios() {
+  horarioSelect.innerHTML = ""; // Limpa opções anteriores
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = "Carregando horários...";
+  option.disabled = true;
+  option.selected = true;
+  horarioSelect.appendChild(option);
+}
+
 // Função para obter horários da planilha e filtrar por data
 function obterHorarios(scriptURL, dataSelecionada) {
+  mostrarLoaderHorarios();
   fetch(scriptURL)
     .then((response) => response.json())
     .then((data) => {
