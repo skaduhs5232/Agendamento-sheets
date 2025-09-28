@@ -1,5 +1,17 @@
 {
+  "name": "agendamento-psicologos",
+  "version": "1.0.0",
+  "description": "Web aplicação para marcação de consultas com psicólogos",
+  "main": "index.html",
+  "scripts": {
+    "start": "node start-server.js",
+    "config": "node apply-config.js",
+    "serve": "http-server -p 8080 -o"
+  },
   "dependencies": {
     "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
