@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Consultório</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+
+    <!-- Font Awesome icons (free version) -->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link rel="stylesheet" href="../css/form.css" />
+    <link rel="stylesheet" href="../css/Google Sheet.css" />
+    <link rel="stylesheet" href="../css/loader.css" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+   <!--  <link rel="stylesheet" href="../css/global-style.css">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon"> -->
+</head>
+
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container px-5">
+        <div class="logo">
+          <i
+            style="font-size: 30px; margin-right: 10px"
+            class="fas fa-brain"
+          ></i>
+          <span>Consultório</span>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Início</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#!">Sobre Nós</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="inicio" class="masthead text-center text-white">
+      <div class="masthead-content">
+        <div class="container px-5">
+          <section class="content">
+            <div class="container">
+              <form
+                class="form"
+                method="post"
+                action="https://script.google.com/macros/library/d/1RxLNarrIuBMcTVVr5fXdJX9AUVG4AIX8wGdPn9TNDqaSKHrsUumC5aXa/5"
+                name="contact-form"
+              >
+                <p class="title">Marque seu atendimento</p>
+                <div class="input-container">
+                  <label>
+                    <span class="titulo">Nome Completo</span>
+                    <input
+                      class="input"
+                      type="text"
+                      name="Nome"
+                      placeholder="Digite seu Nome"
+                      required
+                    />
+                  </label>
+                  <label>
+                    <span class="titulo">Psicólogo</span>
+                    <select id="profissional" name="Psicólogo" required>
+                      <option value="" disabled selected>
+                        Selecione o Psicólogo
+                      </option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  <span class="titulo">E-mail</span>
+                  <input
+                    class="input"
+                    type="email"
+                    name="Email"
+                    placeholder="Digite seu E-mail"
+                    required
+                  />
+                </label>
+                <div class="input-container" style="padding: 0 0 10px 0">
+                  <label>
+                    <span class="titulo">Data da Consulta</span>
+                    <input class="input" type="date" name="Data" required />
+                  </label>
+                  <label>
+                    <span class="titulo">Horário da consulta</span>
+                    <select class="input" name="Hora" required>
+                      <option value="" disabled selected>
+                        Selecione um Horário
+                      </option>
+                    </select>
+                  </label>
+                </div>
+                <button type="submit" class="submit">Enviar</button>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="bg-circle-1 bg-circle"></div>
+      <div class="bg-circle-2 bg-circle"></div>
+      <div class="bg-circle-3 bg-circle"></div>
+      <div class="bg-circle-4 bg-circle"></div>
+    </header>
+
+    <!-- Loading spinner -->
+    <div id="loading" class="loading-container" style="display: none">
+      <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+        <circle
+          class="pl__ring pl__ring--a"
+          cx="120"
+          cy="120"
+          r="105"
+          fill="none"
+          stroke="#000"
+          stroke-width="20"
+          stroke-dasharray="0 660"
+          stroke-dashoffset="-330"
+          stroke-linecap="round"
+        ></circle>
+        <circle
+          class="pl__ring pl__ring--b"
+          cx="120"
+          cy="120"
+          r="35"
+          fill="none"
+          stroke="#000"
+          stroke-width="20"
+          stroke-dasharray="0 220"
+          stroke-dashoffset="-110"
+          stroke-linecap="round"
+        ></circle>
+        <circle
+          class="pl__ring pl__ring--c"
+          cx="85"
+          cy="120"
+          r="70"
+          fill="none"
+          stroke="#000"
+          stroke-width="20"
+          stroke-dasharray="0 440"
+          stroke-linecap="round"
+        ></circle>
+        <circle
+          class="pl__ring pl__ring--d"
+          cx="155"
+          cy="120"
+          r="70"
+          fill="none"
+          stroke="#000"
+          stroke-width="20"
+          stroke-dasharray="0 440"
+          stroke-linecap="round"
+        ></circle>
+      </svg>
+      <p>Enviando...</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-3 bg-black">
+      <div class="container px-5">
+        <p class="m-0 text-center text-white small">Copyright &copy; Consultório</p>
+      </div>
+    </footer>
+
+    <!-- Feedback container -->
+    <div id="feedback-container" style="display: none">
+      <div id="feedback-message" class="feedback-message"></div>
+    </div>
+
+    <!-- Bootstrap 5 JS (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="Google Sheet.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
